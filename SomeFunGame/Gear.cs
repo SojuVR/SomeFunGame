@@ -24,12 +24,12 @@ class Gear
         {
             Console.WriteLine("[What would you like to order?]");
             string order = Console.ReadLine();
-            string result = char.ToUpper(order[0]) + order.Substring(1);
-            if (shop.Contains(result))
+            string upper = char.ToUpper(order[0]) + order.Substring(1);
+            if (shop.Contains(upper))
             {
-                Console.WriteLine("[You bought a " + result + ".]\n");
-                shop.Remove(result);
-                return result;
+                Console.WriteLine("[You bought a " + upper + ".]\n");
+                shop.Remove(upper);
+                return upper;
             }
             else
             {
