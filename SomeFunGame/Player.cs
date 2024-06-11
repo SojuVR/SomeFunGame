@@ -12,10 +12,6 @@ class Player
         this.money = 0;
         this.inventory = new List<string>();
     }
-    public void nextDialogue()
-    {
-        Console.ReadKey(true);
-    }
 
     public void setName()
     {
@@ -63,10 +59,16 @@ class Player
 
     public void addToInventory(string gear)
     {
-        if(gear == "")
-        {
-            return;
-        }
         this.inventory.Add(gear);
+    }
+
+    public void addMoney()
+    {
+
+    }
+
+    public void subtractMoney(int money)
+    {
+        this.money -= money;
     }
 }

@@ -1,8 +1,12 @@
 ﻿class Interrogation
 {
-    public Interrogation()
-    {
+    private Interrogated victim;
+    private Player player;
 
+    public Interrogation(Interrogated interrogated, Player player)
+    {
+        this.victim = interrogated;
+        this.player = player;
     }
 
     public void Interrogate()
