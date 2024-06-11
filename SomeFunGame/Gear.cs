@@ -1,11 +1,13 @@
 ﻿
 class Gear
 {
-    private List<string> shop;
+    private Dictionary<string, int> shop;
     public Gear()
     {
-        this.shop = new List<string>();
-        this.shop.Add("Knife");
+        this.shop = new Dictionary<string, int>() 
+        {
+          { "Knife", 10 },
+        };
     }
     public string buyGear()
     {
@@ -16,18 +18,18 @@ class Gear
             return "";
         }
         Console.WriteLine("[Choose an item to buy.]");
-        for (int i = 0; i < this.shop.Count; i++)
+        foreach (KeyValuePair<string, int> g in shop)
         {
-            Console.WriteLine(shop[i] + "\n");
+            Console.WriteLine(string.Format("{0,-5}", g.Key) + "     $" + g.Value);
         }
         while(true)
         {
             Console.WriteLine("[What would you like to order?]");
             string order = Console.ReadLine();
             string upper = char.ToUpper(order[0]) + order.Substring(1);
-            if (shop.Contains(upper))
+            if (shop.ContainsKey(upper))
             {
-                Console.WriteLine("[You bought a " + upper + ".]\n");
+                Console.WriteLine("[You ordered: " + upper + "]\n");
                 shop.Remove(upper);
                 return upper;
             }

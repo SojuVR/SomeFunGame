@@ -47,9 +47,16 @@ class Player
     public void getInventory()
     {
         Console.WriteLine("Your backpack contains:");
-        for (int i = 0; i < this.inventory.Count; i++)
+        for (int i = 0; i < inventory.Count; i+=2)
         {
-            Console.WriteLine(inventory[i] + "\n");
+            if (i + 1 < inventory.Count)
+            {
+                Console.WriteLine(string.Format("{0,-5}", inventory[i]) + "     " + inventory[i + 1]);
+            }
+            else
+            {
+                Console.Write(inventory[i]);
+            }
         }
         Console.WriteLine();
     }
