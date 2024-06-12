@@ -4,12 +4,12 @@ class FunGame
 {
     private Player player;
     private Kelly kelly;
-    private Gear gear;
+    private Shop gear;
     private Interrogation interrogation;
     public FunGame()
     {
         this.player = new Player();
-        this.gear = new Gear(player);
+        this.gear = new Shop(player);
         this.kelly = new Kelly();
         runGame();
     }

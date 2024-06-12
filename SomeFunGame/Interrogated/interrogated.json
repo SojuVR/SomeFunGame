@@ -1,0 +1,67 @@
+{
+  "eyeColor": [
+    "blue",
+    "green",
+    "brown",
+    "hazel",
+    "gray",
+    "amber"
+  ],
+  "hairColor": [
+    "blonde",
+    "brown",
+    "black",
+    "red",
+    "gray",
+    "white"
+  ],
+  "hairLength": [
+    "short",
+    "medium",
+    "long"
+  ],
+  "age": [
+    "a bit young",
+    "middle-aged",
+    "very old",
+    "a young adult"
+  ],
+  "gender": [
+    "Male",
+    "Female"
+  ],
+  "looks": [
+    "quite ugly",
+    "normal looking",
+    "capturing",
+    "beautiful"
+  ],
+  "build": [
+    "qrotesque",
+    "small",
+    "bulky",
+    "normal"
+  ],
+  "health": [
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "fear": [
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

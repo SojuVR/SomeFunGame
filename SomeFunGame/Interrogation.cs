@@ -11,7 +11,8 @@
 
     public void Interrogate()
     {
-        Console.WriteLine("[You cannot interrogate right now.]\n");
+        Console.WriteLine("[Kelly brings in the prisoner and briefs you.]");
+        this.victim.describeInterrogated();
         Console.ReadKey(true);
     }
 }

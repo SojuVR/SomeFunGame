@@ -1,9 +1,9 @@
 ﻿
-class Gear
+class Shop
 {
     private Player player;
     private Dictionary<string, int> shop;
-    public Gear(Player player)
+    public Shop(Player player)
     {
         this.player = player;
         this.shop = new Dictionary<string, int>() 
