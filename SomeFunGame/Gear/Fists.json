@@ -1,0 +1,20 @@
+{
+  "minDmg": 0,
+  "maxDmg": 2,
+  "fear": 1,
+  "head": 4,
+  "chest": 2,
+  "stomach": 3,
+  "genitals": 3,
+  "arms": 1,
+  "legs": 1,
+  "kelly": 0,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

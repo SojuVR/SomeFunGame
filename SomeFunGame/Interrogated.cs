@@ -3,7 +3,6 @@ class Interrogated
 {
     private List<int> health { get; set; }
     private List<int> fear { get; set; }
-    private List<int> anxiety { get; set; }
     private List<string> gender { get; set; }
     private List<string> hairColor { get; set; }
     private List<string> hairLength { get; set; }
@@ -11,6 +10,8 @@ class Interrogated
     private List<string> looks { get; set; }
     private List<string> build { get; set; }
     private List<string> age { get; set; }
+    private int healthMax;
+    private int fearMax;
     private int healthNum;
     private int fearNum;
     public Interrogated()
@@ -18,17 +19,19 @@ class Interrogated
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Interrogated\interrogated.json");
         var jsonDocument = JsonDocument.Parse(jsonString);
 
-        this.eyeColor = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("eyeColor").GetRawText());
-        this.hairColor = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("hairColor").GetRawText());
-        this.hairLength = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("hairLength").GetRawText());
-        this.age = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("age").GetRawText());
-        this.gender = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("gender").GetRawText());
-        this.looks = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("looks").GetRawText());
-        this.build = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("build").GetRawText());
-        this.health = JsonSerializer.Deserialize<List<int>>(jsonDocument.RootElement.GetProperty("health").GetRawText());
-        this.fear = JsonSerializer.Deserialize<List<int>>(jsonDocument.RootElement.GetProperty("fear").GetRawText());
-        this.healthNum = GetRandomAttributeInt(this.health);
-        this.fearNum = GetRandomAttributeInt(this.fear);
+        this.eyeColor = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("eyeColor").GetRawText())!;
+        this.hairColor = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("hairColor").GetRawText())!;
+        this.hairLength = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("hairLength").GetRawText())!;
+        this.age = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("age").GetRawText())!;
+        this.gender = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("gender").GetRawText())!;
+        this.looks = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("looks").GetRawText())!;
+        this.build = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("build").GetRawText())!;
+        this.health = JsonSerializer.Deserialize<List<int>>(jsonDocument.RootElement.GetProperty("health").GetRawText())!;
+        this.fear = JsonSerializer.Deserialize<List<int>>(jsonDocument.RootElement.GetProperty("fear").GetRawText())!;
+        this.healthMax = GetRandomAttributeInt(this.health);
+        this.fearMax = GetRandomAttributeInt(this.fear);
+        this.healthNum = this.healthMax;
+        this.fearNum = 0;
     }
 
     public void describeInterrogated()
@@ -48,7 +51,7 @@ class Interrogated
                 "He has " + GetRandomAttributeString(this.hairLength) + ", " + GetRandomAttributeString(this.hairColor) + " hair and" +
                 " " + GetRandomAttributeString(this.eyeColor) + " eyes.");
         }
-        switch (this.healthNum)
+        switch (this.healthMax)
         {
             case 10:
                 Console.Write("The captive looks to be very frail and weak, ");
@@ -66,7 +69,7 @@ class Interrogated
                 Console.Write("This captive has definitely taken a beating and been fine before, ");
                 break;
         }
-        switch (this.fearNum)
+        switch (this.fearMax)
         {
             case 10:
                 Console.Write("and has what looks to be a face about ready to pee oneself.\"");
@@ -98,23 +101,83 @@ class Interrogated
         return attributes[index];
     }
 
-    public void decreaseHealth(int dmg)
+    public void increaseHealth(int health)
     {
-        this.healthNum -= dmg;
+        if (this.healthNum < this.healthMax)
+        {
+            this.healthNum += health;
+        }
+        if (this.healthNum > this.healthMax)
+        {
+            this.healthNum = this.healthMax;
+        }
     }
 
-    public void increaseHealth(int heal)
+    public void decreaseHealth(int dmg)
     {
-        this.healthNum += heal;
+        if (this.healthNum > 0)
+        {
+            this.healthNum -= dmg;
+        }
+        if (this.healthNum < 0)
+        {
+            this.healthNum = 0;
+        }
     }
 
     public void increaseFear(int fear)
     {
-        this.fearNum += fear;
+        if (this.fearNum < this.fearMax)
+        {
+            this.fearNum += fear;
+        }
+        if (this.fearNum > this.fearMax)
+        {
+            this.fearNum = this.fearMax;
+        }
     }
 
-    public void decreaseFear(int assurance)
+    public void decreaseFear(int fear)
     {
-        this.fearNum -= assurance;
+        if (this.fearNum > 0)
+        {
+            this.fearNum -= fear;
+        }
+        if (this.fearNum < 0)
+        {
+            this.fearNum = 0;
+        }
+    }
+
+    public int getHealth()
+    {
+        return this.healthNum;
+    }
+
+    public int getFear()
+    {
+        return this.fearNum;
+    }
+
+    public int getMaxFear()
+    {
+        return this.fearMax;
+    }
+
+    public bool infoAttempt()
+    {
+        float chance;
+        int num;
+        Random random = new Random();
+        chance = ((fearNum / fearMax) / 3) * 100;
+        num = random.Next(100);
+        if (num < chance)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 }

@@ -28,7 +28,8 @@ class Shop
         while (true)
         {
             Console.WriteLine("[What would you like to order?] [Your Money: $" + this.player.getMoney() + "]");
-            string order = Console.ReadLine();
+            string order = Console.ReadLine()!;
+            order = order.ToLower();
             string upper = char.ToUpper(order[0]) + order.Substring(1);
             if (upper.Contains("Exit"))
             {

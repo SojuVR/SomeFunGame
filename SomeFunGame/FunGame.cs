@@ -6,7 +6,9 @@ class FunGame
     private Kelly kelly;
     private Shop gear;
     private Interrogation interrogation;
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public FunGame()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
         this.player = new Player();
         this.gear = new Shop(player);
@@ -66,11 +68,11 @@ class FunGame
         {
             Console.WriteLine("[Choose from the following options.]\nInterrogate     Talk to Kelly     Your Stats" +
             "\nBuy Gear        Inventory         Exit Game\n");
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine()!;
             choice = choice.ToLower();
             if(choice == "interrogate")
             {
-                interrogation = new Interrogation(new Interrogated(), this.player);
+                interrogation = new Interrogation(new Interrogated(), this.player, this.kelly);
                 interrogation.Interrogate();
                 continue;
             }
