@@ -103,38 +103,40 @@ class Interrogated
 
     public void getStatus()
     {
-        if(((this.healthNum/this.healthMax)*100) < 25)
+        float health = ((float)this.healthNum / this.healthMax) * 100;
+        float fear = ((float)this.fearNum / this.fearMax) * 100;
+        if (health < 25)
         {
             Console.WriteLine("[The captive doesn't look like much more can be taken.]");
         }
-        else if (((this.healthNum / this.healthMax) * 100) >= 25 && ((this.healthNum / this.healthMax) * 100) < 50)
+        else if (health >= 25 && health < 50)
         {
             Console.WriteLine("[The captive seems to be in pain but remains resilient.]");
         }
-        else if (((this.healthNum / this.healthMax) * 100) >= 50 && ((this.healthNum / this.healthMax) * 100) < 75)
+        else if (health >= 50 && health < 75)
         {
             Console.WriteLine("[The captive doesn't seem too bothered by this interrogation yet.]");
         }
-        else if (((this.healthNum / this.healthMax) * 100) >= 75 && ((this.healthNum / this.healthMax) * 100) < 100)
+        else if (health >= 75 && health <= 100)
         {
             Console.WriteLine("[The captive looks ready to burst out of the chair to fight you.]");
         }
-        if (((this.fearNum / this.fearMax) * 100) < 25)
+        if (fear < 25)
         {
             Console.WriteLine("[The captive looks to be taunting you to try harder.]\n");
             Console.ReadKey(true);
         }
-        else if (((this.fearNum / this.fearMax) * 100) >= 25 && ((this.fearNum / this.fearMax) * 100) < 50)
+        else if (fear >= 25 && fear < 50)
         {
             Console.WriteLine("[The captive doesn't seem all that afraid of you.]\n");
             Console.ReadKey(true);
         }
-        else if (((this.fearNum / this.fearMax) * 100) >= 50 && ((this.fearNum / this.fearMax) * 100) < 75)
+        else if (fear >= 50 && fear < 75)
         {
             Console.WriteLine("[The captive is hoping for a prayer to be answered.]\n");
             Console.ReadKey(true);
         }
-        else if (((this.fearNum / this.fearMax) * 100) >= 75 && ((this.fearNum / this.fearMax) * 100) < 100)
+        else if (fear >= 75 && fear < 100)
         {
             Console.WriteLine("[The captive is trembling in the chair, unable to look at you.]\n");
             Console.ReadKey(true);

@@ -46,7 +46,8 @@ class Player
         int max = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("maxDmg").GetRawText())!;
         int mult = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
         Random random = new Random();
-        return (random.Next(min, max)) * mult;
+        int dmg = (random.Next(min, max + 1)) * mult;
+        return dmg;
     }
 
     public int inflictFear(string force, string spot)
