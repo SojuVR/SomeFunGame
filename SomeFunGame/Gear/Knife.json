@@ -9,6 +9,12 @@
   "arms": 2,
   "legs": 2,
   "kelly": -1,
+  "headDesc": "n",
+  "chestDesc": "n",
+  "stomachDesc": "n",
+  "genitalsDesc": "n",
+  "armsDesc": "n",
+  "legsDesc": "n",
   "exclude": [
     "**/bin",
     "**/bower_components",

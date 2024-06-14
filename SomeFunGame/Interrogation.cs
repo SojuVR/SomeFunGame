@@ -18,7 +18,7 @@
         while (true)
         {
             Console.WriteLine("\n[Choose from the following options.]\nUse force     Talk to captive     Threaten" +
-            "\nBribe         Give up\n");
+            "\nBribe         Status              Give up\n");
             string choice = Console.ReadLine()!;
             choice = choice.ToLower();
             if (choice == "threaten")
@@ -37,6 +37,11 @@
                 Console.ReadKey(true);
                 this.kelly.addRep(-10);
                 return;
+            }
+            else if (choice == "status")
+            {
+                this.victim.getStatus();
+                continue;
             }
             else if (choice == "bribe")
             {
@@ -62,7 +67,9 @@
                             Console.ReadKey(true);
                             this.player.addMoney(10);
                             this.kelly.addRep(15);
+                            this.player.levelUp(2);
                             Console.WriteLine("[You received 10 dollars and quite a bit of respect from Kelly.]\n");
+                            Console.WriteLine("[You levelled up twice.]\n");
                             Console.ReadKey(true);
                             return;
                         }
@@ -87,37 +94,46 @@
             }
             else if (choice.Contains("use") || choice.Contains("force"))
             {
-                this.player.getInventory();
-                Console.WriteLine("[Which would you like to use?]");
-                string force = Console.ReadLine()!;
-                force = force.ToLower();
-                string force2 = char.ToUpper(force[0]) + force.Substring(1);
-                Console.WriteLine("\nHead        Chest        Stomach\n" +
-                    "Genitals     Arms         Legs");
-                Console.WriteLine("[Where would you like to use it?]");
-                string spot = Console.ReadLine()!;
-                spot = spot.ToLower();
-                int wound = this.player.inflictWound(force2, spot);
-                this.victim.decreaseHealth(wound);
-                if (this.victim.getHealth() == 0)
+                try
                 {
-                    Console.WriteLine("[The captive stopped breathing. You seemed to have killed the captive.]\n" +
-                        "[You return to your workstation defeated. You get no money and lose much respect from Kelly.]\n");
-                    this.kelly.addRep(-15);
-                    return;
+                    this.player.getInventory();
+                    Console.WriteLine("[Which would you like to use?]");
+                    string force = Console.ReadLine()!;
+                    force = force.ToLower();
+                    string force2 = char.ToUpper(force[0]) + force.Substring(1);
+                    Console.WriteLine("\nHead        Chest        Stomach\n" +
+                        "Genitals     Arms         Legs");
+                    Console.WriteLine("[Where would you like to use it?]");
+                    string spot = Console.ReadLine()!;
+                    spot = spot.ToLower();
+                    int wound = this.player.inflictWound(force2, spot);
+                    this.victim.decreaseHealth(wound);
+                    if (this.victim.getHealth() == 0)
+                    {
+                        Console.WriteLine("[The captive stopped breathing. You seemed to have killed the captive.]\n" +
+                            "[You return to your workstation defeated. You get no money and lose much respect from Kelly.]\n");
+                        this.kelly.addRep(-15);
+                        return;
+                    }
+                    int fear = this.player.inflictFear(force2, spot);
+                    this.victim.increaseFear(fear);
+                    if (this.victim.getFear() == this.victim.getMaxFear())
+                    {
+                        Console.WriteLine("[The captive passed out. You won't be able to continue the interrogation.]\n" +
+                            "[You return to your workstation defeated. You get no money and lose some respect from Kelly.]\n");
+                        this.kelly.addRep(-5);
+                        return;
+                    }
+                    int rep = this.player.affectKelly(force2);
+                    this.kelly.addRep(rep);
+                    continue;
                 }
-                int fear = this.player.inflictFear(force2, spot);
-                this.victim.increaseFear(fear);
-                if (this.victim.getFear() == this.victim.getMaxFear())
+                catch
                 {
-                    Console.WriteLine("[The captive passed out. You won't be able to continue the interrogation.]\n" +
-                        "[You return to your workstation defeated. You get no money and lose some respect from Kelly.]\n");
-                    this.kelly.addRep(-5);
-                    return;
+                    Console.WriteLine("[Your choice of equipment and/or location was invalid.]\n");
+                    Console.ReadKey(true);
+                    continue;
                 }
-                int rep = this.player.affectKelly(force2);
-                this.kelly.addRep(rep);
-                continue;
             }
             else if (choice.Contains("talk") || choice.Contains("captive"))
             {
@@ -130,7 +146,9 @@
                     Console.ReadKey(true);
                     this.player.addMoney(10);
                     this.kelly.addRep(10);
+                    this.player.levelUp(1);
                     Console.WriteLine("[You received 10 dollars and some respect from Kelly.]\n");
+                    Console.WriteLine("[You levelled up once.]\n");
                     Console.ReadKey(true);
                     return;
                 }

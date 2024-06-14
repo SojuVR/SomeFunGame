@@ -10,7 +10,7 @@ class Player
     {
         this.playerName = "IDFK";
         this.level = 1;
-        this.money = 10000;
+        this.money = 0;
         this.inventory = new List<string>();
         this.inventory.Add("Fists");
     }
@@ -30,6 +30,11 @@ class Player
             match = Regex.Match(input, pattern);
         }
         this.playerName = input;
+    }
+    
+    public void levelUp(int xp)
+    {
+        this.level += xp;
     }
 
     public int inflictWound(string force, string spot)

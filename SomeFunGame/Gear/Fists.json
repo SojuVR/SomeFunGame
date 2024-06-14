@@ -8,6 +8,12 @@
   "genitals": 3,
   "arms": 1,
   "legs": 1,
+  "headDesc": "n",
+  "chestDesc": "n",
+  "stomachDesc": "n",
+  "genitalsDesc": "n",
+  "armsDesc": "n",
+  "legsDesc": "n",
   "kelly": 0,
   "exclude": [
     "**/bin",
