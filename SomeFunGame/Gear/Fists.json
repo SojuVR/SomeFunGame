@@ -1,4 +1,5 @@
 {
+  "desc": "You've got tough hands, it'll do some damage. You aren't that intimidating on your own, though. Minimum Damage: 0. Maximum Damage: 2.",
   "minDmg": 0,
   "maxDmg": 2,
   "fear": 1,

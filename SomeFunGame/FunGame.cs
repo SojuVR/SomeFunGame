@@ -84,9 +84,33 @@ class FunGame
             }
             else if (choice == "inventory")
             {
-                this.player.getInventory();
-                Console.ReadKey(true);
-                continue;
+                while (true)
+                {
+                    try
+                    {
+                        this.player.getInventory();
+                        Console.WriteLine("\n[select an item to read about, or type exit.]");
+                        string selection = Console.ReadLine()!;
+                        selection = selection.ToLower();
+                        if (selection.Contains("exit"))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            string upper = char.ToUpper(selection[0]) + selection.Substring(1);
+                            this.player.gearDescription(upper);
+                            Console.ReadKey(true);
+                            continue;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("[That wasn't a valid selection.]\n");
+                        Console.ReadKey(true);
+                        continue;
+                    }
+                }
             }
             else if(choice.Contains("talk") || choice.Contains("kelly")) 
             {

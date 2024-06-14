@@ -1,4 +1,5 @@
 {
+  "desc": "A classic way to inflict pain on a captive. Puts a bit of fear into 'em, if used right. Minimum Damage: 1. Maximum Damage: 3.",
   "minDmg": 1,
   "maxDmg": 3,
   "fear": 2,

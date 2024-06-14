@@ -69,6 +69,15 @@ class Player
         return rep;
     }
 
+    public void gearDescription(string force)
+    {
+        string fileName = force + ".json";
+        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
+        var jsonDocument = JsonDocument.Parse(jsonString);
+        string desc = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("desc").GetRawText())!;
+        Console.WriteLine(desc);
+    }
+
     public int getLevel()
     {
         return this.level;
