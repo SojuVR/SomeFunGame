@@ -57,6 +57,9 @@ class Player
         var jsonDocument = JsonDocument.Parse(jsonString);
         int fear = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("fear").GetRawText())!;
         int mult = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
+        string desc = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty(spot + "Desc").GetRawText())!;
+        Console.WriteLine(desc);
+        Console.ReadKey(true);
         return fear * mult;
     }
 

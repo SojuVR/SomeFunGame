@@ -112,7 +112,7 @@
                     {
                         Console.WriteLine("[The captive stopped breathing. You seemed to have killed the captive.]\n" +
                             "[You return to your workstation defeated. You get no money and lose much respect from Kelly.]\n");
-                        this.kelly.addRep(-15);
+                        this.kelly.addRep(-10);
                         return;
                     }
                     int fear = this.player.inflictFear(force2, spot);

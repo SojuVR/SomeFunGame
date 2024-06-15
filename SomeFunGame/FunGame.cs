@@ -58,7 +58,9 @@ class FunGame
 
     void tutorial()
     {
-        Console.WriteLine("[I don't feel like writing the tutorial right now. I will write it when I'm done.]\n");
+        Console.WriteLine("[Your job will be to interrogate prisoners for information. Kelly was told you convince captives quickly. " +
+            "The longer you take and the more painful you make it, the less she will like you. She's not much for blood. If she dislikes you enough, " +
+            "you'll lose your job. As you become more successful, more tools will be available to you. Make interrogations fast. Good luck.]\n");
         Console.ReadKey(true);
     }
 
