@@ -19,14 +19,14 @@ class Shop
             Console.ReadKey(true);
             return;
         }
-        Console.WriteLine("[Choose an item to buy.]");
-        foreach (KeyValuePair<string, int> g in shop)
-        {
-            Console.WriteLine(string.Format("{0,-5}", g.Key) + "     $" + g.Value);
-        }
-        Console.WriteLine("\nExit Store");
         while (true)
         {
+            Console.WriteLine("[Choose an item to buy.]");
+            foreach (KeyValuePair<string, int> g in shop)
+            {
+                Console.WriteLine(string.Format("{0,-5}", g.Key) + "     $" + g.Value);
+            }
+            Console.WriteLine("Exit Store\n");
             Console.WriteLine("[What would you like to order?] [Your Money: $" + this.player.getMoney() + "]");
             string order = Console.ReadLine()!;
             order = order.ToLower();
@@ -39,11 +39,30 @@ class Shop
             {
                 if (this.player.getMoney() >= shop[upper])
                 {
-                    Console.WriteLine("[You ordered: " + upper + "]\n");
-                    this.player.subtractMoney(shop[upper]);
-                    shop.Remove(upper);
-                    this.player.addToInventory(upper);
-                    return;
+                    this.player.gearDescription(upper);
+                    Console.WriteLine("\n[You'd like to order: " + upper + ", correct?] [Yes/No]\n");
+                    string response = "";
+                    while (response != "yes" || response != "no")
+                    {
+                        response = Console.ReadLine()!;
+                        response = response.ToLower();
+                        if (response == "no")
+                        {
+                            break;
+                        }
+                        else if (response == "yes")
+                        {
+                            Console.WriteLine("[You ordered: " + upper + "]\n");
+                            this.player.subtractMoney(shop[upper]);
+                            shop.Remove(upper);
+                            this.player.addToInventory(upper);
+                            return;
+                        }
+                        else
+                        {
+                            Console.WriteLine("[That was not a valid response].\n");
+                        }
+                    }
                 }
                 else
                 {

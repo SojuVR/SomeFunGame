@@ -211,7 +211,7 @@ class Interrogated
         float chance;
         int num;
         Random random = new Random();
-        chance = ((fearNum / fearMax) / 3) * 100;
+        chance = (((float)fearNum / fearMax) / 3) * 100;
         num = random.Next(100);
         if (num < chance)
         {

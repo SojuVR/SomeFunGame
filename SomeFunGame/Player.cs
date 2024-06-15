@@ -10,7 +10,7 @@ class Player
     {
         this.playerName = "IDFK";
         this.level = 1;
-        this.money = 0;
+        this.money = 10;
         this.inventory = new List<string>();
         this.inventory.Add("Fists");
     }
@@ -75,7 +75,7 @@ class Player
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
         var jsonDocument = JsonDocument.Parse(jsonString);
         string desc = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("desc").GetRawText())!;
-        Console.WriteLine(desc);
+        Console.WriteLine(desc + "\n");
     }
 
     public int getLevel()
