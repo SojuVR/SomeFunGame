@@ -25,7 +25,7 @@ class FunGame
     void intro()
     {
         Console.WriteLine("[You are an agent of a secret agency of your national government. You got in claiming" +
-            " to be an expert in interrogations. Now it is time to prove your worth. Your long-term assignment" +
+            " to be an expert in interrogations, but you don't actually have any experience. Your long-term assignment" +
             " will be to interrogate numerous members of a terrorist organization to obtain information" +
             " that will provide the whereabouts of the organization. Failure to do so will end in your...termination.]\n");
         Console.ReadKey(true);
@@ -121,6 +121,7 @@ class FunGame
             }
             else if (choice.Contains("buy") || choice.Contains("gear")) 
             {
+                this.gear.addToShop();
                 this.gear.buyGear();
                 continue;
             }

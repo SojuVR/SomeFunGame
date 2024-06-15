@@ -1,0 +1,28 @@
+{
+  "desc": "This won't hurt them at all. However, it will scare them, maybe even a lot...they could even pass out. It's unpredictable.'  Minimum Damage: 0. Maximum Damage: 0.",
+  "minDmg": 0,
+  "maxDmg": 0,
+  "minFear": 1,
+  "maxFear": 17,
+  "head": 3,
+  "chest": 3,
+  "stomach": 3,
+  "genitals": 3,
+  "arms": 3,
+  "legs": 3,
+  "kelly": -2,
+  "headDesc": "[You taze the captive in the head.]",
+  "chestDesc": "[You taze the captive in the chest.]",
+  "stomachDesc": "[You taze the captive in the stomach.]",
+  "genitalsDesc": "[You taze the captive in the genitals....why?]",
+  "armsDesc": "[You taze the captive in the arm.]",
+  "legsDesc": "[You taze the captive in the leg.]",
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

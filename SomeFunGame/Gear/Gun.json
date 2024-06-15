@@ -1,0 +1,28 @@
+{
+  "desc": "This thing will pack a serious punch. Nobody will want to mess with you. Minimum Damage: 5. Maximum Damage: 20.",
+  "minDmg": 5,
+  "maxDmg": 20,
+  "minFear": 10,
+  "maxFear": 10,
+  "head": 10,
+  "chest": 4,
+  "stomach": 2,
+  "genitals": 3,
+  "arms": 1,
+  "legs": 1,
+  "kelly": -3,
+  "headDesc": "[You shoot the captive in the head....brains everywhere.]",
+  "chestDesc": "[You put a bullet hole right through the chest. It will be pretty amazing if the captive doesn't bleed out.]",
+  "stomachDesc": "[You shoot the captive in the stomach, hoping not to hit any vital organs.]",
+  "genitalsDesc": "Captive: AHHHHHH FUUUUCK!!!! [This captive will not be having kids.]",
+  "armsDesc": "Captive: FUCK! SHIT! [You shoot an arm and it goes numb.]",
+  "legsDesc": "Captive: motherFUCKER!! [You blow out a kneecap.]",
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

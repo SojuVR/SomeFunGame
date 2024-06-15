@@ -112,6 +112,7 @@
                     {
                         Console.WriteLine("[The captive stopped breathing. You seemed to have killed the captive.]\n" +
                             "[You return to your workstation defeated. You get no money and lose much respect from Kelly.]\n");
+                        Console.ReadKey(true);
                         this.kelly.addRep(-10);
                         return;
                     }
@@ -122,6 +123,7 @@
                         Console.WriteLine("[The captive passed out. You won't be able to continue the interrogation.]\n" +
                             "[You return to your workstation defeated. You get no money and lose some respect from Kelly.]\n");
                         this.kelly.addRep(-5);
+                        Console.ReadKey(true);
                         return;
                     }
                     int rep = this.player.affectKelly(force2);

@@ -3,6 +3,7 @@ class Shop
 {
     private Player player;
     private Dictionary<string, int> shop;
+    private HashSet<string> addedItems;
     public Shop(Player player)
     {
         this.player = player;
@@ -10,6 +11,7 @@ class Shop
         {
           { "Knife", 10 },
         };
+        this.addedItems = new HashSet<string>();
     }
     public void buyGear()
     {
@@ -30,12 +32,16 @@ class Shop
             Console.WriteLine("[What would you like to order?] [Your Money: $" + this.player.getMoney() + "]");
             string order = Console.ReadLine()!;
             order = order.ToLower();
-            string upper = char.ToUpper(order[0]) + order.Substring(1);
-            if (upper.Contains("Exit"))
+            if (order.Contains("exit"))
             {
                 return;
             }
-            else if (shop.ContainsKey(upper))
+            if (string.IsNullOrEmpty(order))
+            {
+                continue;
+            }
+            string upper = char.ToUpper(order[0]) + order.Substring(1);
+            if (shop.ContainsKey(upper))
             {
                 if (this.player.getMoney() >= shop[upper])
                 {
@@ -80,6 +86,15 @@ class Shop
 
     public void addToShop()
     {
-
+        if (this.player.getLevel() >= 2 && !this.addedItems.Contains("Tazer"))
+        {
+            this.shop.Add("Tazer", 20);
+            this.addedItems.Add("Tazer");
+        }
+        if (this.player.getLevel() >= 3 && !this.addedItems.Contains("Gun"))
+        {
+            this.shop.Add("Gun", 30);
+            this.addedItems.Add("Gun");
+        }
     }
 }
