@@ -25,6 +25,7 @@ class FunGame
             choice = choice.ToLower();
             if (choice.Contains("new"))
             {
+                File.WriteAllText(savePath, "{}");
                 this.player = new Player();
                 this.gear = new Shop(this.player);
                 this.kelly = new Kelly();
@@ -35,6 +36,11 @@ class FunGame
             }
             else if (choice.Contains("load"))
             {
+                if (File.ReadAllText(savePath) == "{}")
+                {
+                    Console.WriteLine("[There is no game data to load.]\n");
+                    continue;
+                }
                 string json = File.ReadAllText(savePath);
                 var data = JsonConvert.DeserializeObject<dynamic>(json);
                 this.player = JsonConvert.DeserializeObject<Player>(Convert.ToString(data.Player));
