@@ -1,18 +1,20 @@
 ﻿using System.Text.RegularExpressions;
 using System.Text.Json;
+using Newtonsoft.Json;
+
+[Serializable]
 class Player
 {
     public string playerName;
-    private int level;
-    private int money;
-    private List<string> inventory;
+    [JsonProperty] private int level;
+    [JsonProperty] private int money;
+    [JsonProperty] public List<string> inventory;
     public Player()
     {
         this.playerName = "IDFK";
         this.level = 1;
-        this.money = 0;
+        this.money = 10000;
         this.inventory = new List<string>();
-        this.inventory.Add("Fists");
     }
 
     public void setName()
@@ -31,7 +33,7 @@ class Player
         }
         this.playerName = input;
     }
-    
+
     public void levelUp(int xp)
     {
         this.level += xp;
@@ -42,12 +44,12 @@ class Player
         string fileName = force + ".json";
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
         var jsonDocument = JsonDocument.Parse(jsonString);
-        int min = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("minDmg").GetRawText())!;
-        int max = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("maxDmg").GetRawText())!;
-        int mult = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
+        int min = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("minDmg").GetRawText())!;
+        int max = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("maxDmg").GetRawText())!;
+        int mult = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
         Random random = new Random();
         int dmg = (random.Next(min, max + 1)) * mult;
-        string desc = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty(spot + "Desc").GetRawText())!;
+        string desc = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty(spot + "Desc").GetRawText())!;
         Console.WriteLine(desc);
         return dmg;
     }
@@ -57,9 +59,9 @@ class Player
         string fileName = force + ".json";
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
         var jsonDocument = JsonDocument.Parse(jsonString);
-        int min = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("minFear").GetRawText())!;
-        int max = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("maxFear").GetRawText())!;
-        int mult = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
+        int min = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("minFear").GetRawText())!;
+        int max = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("maxFear").GetRawText())!;
+        int mult = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
         Console.ReadKey(true);
         Random random = new Random();
         int fear = (random.Next(min, max + 1)) * mult;
@@ -71,7 +73,7 @@ class Player
         string fileName = force + ".json";
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
         var jsonDocument = JsonDocument.Parse(jsonString);
-        int rep = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("kelly").GetRawText())!;
+        int rep = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("kelly").GetRawText())!;
         return rep;
     }
 
@@ -80,7 +82,7 @@ class Player
         string fileName = force + ".json";
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
         var jsonDocument = JsonDocument.Parse(jsonString);
-        string desc = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("desc").GetRawText())!;
+        string desc = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("desc").GetRawText())!;
         Console.WriteLine(desc + "\n");
     }
 
@@ -96,6 +98,10 @@ class Player
 
     public void getInventory()
     {
+        if(!this.inventory.Contains("Fists"))
+        {
+            this.inventory.Add("Fists");
+        }
         Console.WriteLine("Your arsenal consists of:");
         for (int i = 0; i < inventory.Count; i+=2)
         {

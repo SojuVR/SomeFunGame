@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 class FunGame
 {
@@ -6,21 +7,47 @@ class FunGame
     private Kelly kelly;
     private Shop gear;
     private Interrogation interrogation;
+    private string savePath = @"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Save\savePlayer.json";
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public FunGame()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
-        this.player = new Player();
-        this.gear = new Shop(player);
-        this.kelly = new Kelly();
-        runGame();
-    }
-    void runGame()
-    {
-        this.player.setName();
-        intro();
-        tutorial();
+        initializeGame();
         computer();
+    }
+    void initializeGame()
+    {
+        while (true)
+        {
+            Console.WriteLine("[Choose from the following options.]\nNew Game" +
+            "\nLoad Game\n");
+            string choice = Console.ReadLine()!;
+            choice = choice.ToLower();
+            if (choice.Contains("new"))
+            {
+                this.player = new Player();
+                this.gear = new Shop(this.player);
+                this.kelly = new Kelly();
+                this.player.setName();
+                intro();
+                tutorial();
+                break;
+            }
+            else if (choice.Contains("load"))
+            {
+                string json = File.ReadAllText(savePath);
+                var data = JsonConvert.DeserializeObject<dynamic>(json);
+                this.player = JsonConvert.DeserializeObject<Player>(Convert.ToString(data.Player));
+                this.kelly = JsonConvert.DeserializeObject<Kelly>(Convert.ToString(data.Kelly));              
+                this.gear = new Shop(this.player);
+                break;
+            }
+            else
+            {
+                Console.WriteLine("[That was not an option.]\n");
+                continue;
+            }
+        }
     }
     void intro()
     {
@@ -109,7 +136,6 @@ class FunGame
                     catch
                     {
                         Console.WriteLine("[That wasn't a valid selection.]\n");
-                        Console.ReadKey(true);
                         continue;
                     }
                 }
@@ -127,6 +153,13 @@ class FunGame
             }
             else if (choice.Contains("exit")) 
             {
+                var data = new
+                {
+                    Player = this.player,
+                    Kelly = this.kelly
+                };
+                string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+                File.WriteAllText(savePath, json);
                 Console.WriteLine("Goodbye.");
                 Console.ReadKey(true);
                 System.Environment.Exit(0);

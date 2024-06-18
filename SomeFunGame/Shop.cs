@@ -3,15 +3,10 @@ class Shop
 {
     private Player player;
     private Dictionary<string, int> shop;
-    private HashSet<string> addedItems;
     public Shop(Player player)
     {
         this.player = player;
-        this.shop = new Dictionary<string, int>() 
-        {
-          { "Knife", 10 },
-        };
-        this.addedItems = new HashSet<string>();
+        this.shop = new Dictionary<string, int>();
     }
     public void buyGear()
     {
@@ -86,15 +81,17 @@ class Shop
 
     public void addToShop()
     {
-        if (this.player.getLevel() >= 2 && !this.addedItems.Contains("Tazer"))
+        if (this.player.getLevel() >= 1 && !this.player.inventory.Contains("Knife"))
+        {
+            this.shop.Add("Knife", 10);
+        }
+        if (this.player.getLevel() >= 2 && !this.player.inventory.Contains("Tazer"))
         {
             this.shop.Add("Tazer", 20);
-            this.addedItems.Add("Tazer");
         }
-        if (this.player.getLevel() >= 3 && !this.addedItems.Contains("Gun"))
+        if (this.player.getLevel() >= 3 && !this.player.inventory.Contains("Gun"))
         {
             this.shop.Add("Gun", 30);
-            this.addedItems.Add("Gun");
         }
     }
 }

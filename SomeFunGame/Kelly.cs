@@ -1,7 +1,9 @@
-﻿
+﻿using Newtonsoft.Json;
+
+[Serializable]
 class Kelly
 {
-    private int level;
+    [JsonProperty] private int level;
     public Kelly()
     {
         this.level = 0;
