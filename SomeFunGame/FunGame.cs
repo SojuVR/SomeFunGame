@@ -42,7 +42,7 @@ class FunGame
                     continue;
                 }
                 string json = File.ReadAllText(savePath);
-                var data = JsonConvert.DeserializeObject<dynamic>(json);
+                var data = JsonConvert.DeserializeObject<dynamic>(json)!;
                 this.player = JsonConvert.DeserializeObject<Player>(Convert.ToString(data.Player));
                 this.kelly = JsonConvert.DeserializeObject<Kelly>(Convert.ToString(data.Kelly));              
                 this.gear = new Shop(this.player);
@@ -101,6 +101,11 @@ class FunGame
     {
         while (true)
         {
+            if (this.kelly.checkFail() == true)
+            {
+                File.WriteAllText(savePath, "{}");
+                break;
+            }
             Console.WriteLine("[Choose from the following options.]\nInterrogate     Talk to Kelly     Your Stats" +
             "\nBuy Gear        Inventory         Exit Game\n");
             string choice = Console.ReadLine()!;
