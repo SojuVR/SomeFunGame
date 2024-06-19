@@ -57,10 +57,11 @@ class FunGame
     }
     void intro()
     {
-        Console.WriteLine("[You are an agent of a secret agency of your national government. You got in claiming" +
-            " to be an expert in interrogations, but you don't actually have any experience. Your long-term assignment" +
-            " will be to interrogate numerous members of a terrorist organization to obtain information" +
-            " that will provide the whereabouts of the organization. Failure to do so will end in your...termination.]\n");
+        Console.WriteLine("[You are a newly-hired member of the Central Intelligence Agency of New America. You got in claiming" +
+            " to be an expert in interrogations, but you don't actually have any experience....you just really needed a job." +
+            " For some reason, you thought this would be an easy job to fake. Your long-term assignment" +
+            " will be to interrogate numerous members of a terrorist organization called Antimerica to obtain information" +
+            " that will provide the whereabouts of this organization. Failure to do so will end in your...termination.]\n");
         Console.ReadKey(true);
 
         Console.WriteLine("[You walk into your new office at your agency. It is pretty barebones; there are two deskspaces" +

@@ -45,8 +45,9 @@ class Kelly
     {
         if (this.level < -20)
         {
-            Console.WriteLine("Kelly: \"That's it. I'm done. You suck at your job; you're fired.\"" +
-                "\n[Your relationship with her is " + this.level + ". You lost the game.]\n");
+            Console.WriteLine("Kelly: \"That's it. I'm done. You clearly lied about your skills. You're fired. You know what termination entails...can't" +
+                "let any information get out.\"" +
+                "\n[She whips out a pistol and blasts a hole in your head. Your relationship with her was " + this.level + ". You lost the game.]\n");
             Console.ReadKey(true);
             return true;
         }
