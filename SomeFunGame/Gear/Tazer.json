@@ -1,5 +1,5 @@
 {
-  "desc": "This won't hurt them at all. However, it will scare them, maybe even a lot...they could even pass out. It's unpredictable.'  Minimum Damage: 0. Maximum Damage: 0.",
+  "desc": "This won't hurt them at all...not really. However, it will scare them, maybe a lot...they could even pass out. It's unpredictable.'  Minimum Damage: 0. Maximum Damage: 0.",
   "minDmg": 0,
   "maxDmg": 0,
   "minFear": 1,

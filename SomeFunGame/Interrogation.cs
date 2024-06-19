@@ -23,7 +23,8 @@
             choice = choice.ToLower();
             if (choice == "threaten")
             {
-                Console.WriteLine(this.player.playerName + ": \"You like your family? I sure do.\"\n" +
+                Console.WriteLine(this.player.playerName + ": \"You like your family? I sure do. That's a threat, not a compliment..." +
+                    "nevermind.\"\n" +
                     " [You threaten the captive.]");
                 Console.ReadKey(true);
                 Random random = new Random();
@@ -45,7 +46,8 @@
             }
             else if (choice == "bribe")
             {
-                Console.WriteLine(this.player.playerName + ": \"Maybe you need a little convincing for when we set you free...\"\n" +
+                Console.WriteLine(this.player.playerName + ": \"Maybe you need a little convincing for when we set you free...*psst, we are " +
+                    "setting them free, right boss?*\"\n" +
                     " [How much money will you offer? You have " + this.player.getMoney() + " dollars.]");
                 string amnt = Console.ReadLine()!;
                 try
@@ -139,7 +141,7 @@
             }
             else if (choice.Contains("talk") || choice.Contains("captive"))
             {
-                Console.WriteLine(this.player.playerName + ": \"Tell me what I need to know, NOW!\"");
+                Console.WriteLine(this.player.playerName + ": \"Tell me what I need to know, NOW! Please.\"");
                 Console.ReadKey(true);
                 bool result = this.victim.infoAttempt();
                 if (result == true)
