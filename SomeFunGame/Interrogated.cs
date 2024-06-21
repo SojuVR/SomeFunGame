@@ -88,7 +88,7 @@ class Interrogated
                 break;
         }
     }
-    private string GetRandomAttributeString(List<string> attributes)
+    public string GetRandomAttributeString(List<string> attributes)
     {
         Random random = new Random();
         int index = random.Next(attributes.Count);

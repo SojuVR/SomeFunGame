@@ -1,0 +1,74 @@
+{
+  "threaten": [
+    ": \"You like your family? I sure do. That's a threat, not a compliment...nevermind.\"",
+    ": \"You are making me angry....you do not wanna see me when I'm angry...\"",
+    ": \"Oh buddy...watch it before the alpha wolf comes out...\"",
+    ": \"You're never going to see your favorite show ever again at this rate.\"",
+    ": \"I'm gonna rip your nails out one by one buddy...I think it would be painful.\"",
+    ": \"What's your problem man? You want a broken kneecap?\"",
+    ": \"Don't make me get the drill out...I definitely know how to use it...\"",
+    ": \"Maybe you need a little convincing for when we set you free...*psst, we are setting them free, right boss?*\""
+  ],
+  "bribe": [
+    ": \"Maybe you need a little convincing for when we set you free...*psst, we are setting them free, right boss?*\"",
+    ": \"I'll make it rain on you if you speak up...\"",
+    ": \"Who likes moneyyyyyy?\"",
+    ": \"You ever seen a benjamin in your life, buddy?\"",
+    ": \"Listen to me rub this money in my hands it's so satisfying...\"",
+    ": \"Money. You want?\"",
+    ": \"I'm loaded buddy, tell me what I want and I'll share it.\""
+  ],
+  "bribeSuccess": [
+    "Captive: \"Well hell yeah I'll tell ya!\"",
+    "Captive: \"Aight bet.\"",
+    "Captive: \"...Fine.\"",
+    "Captive: \"You know what? That'll do.\"",
+    "Captive: \"That's what I'm talking about!\"",
+    "Captive: \"You know what? Fuck Antimerica.\"",
+    "Captive: \"Ok.\""
+  ],
+  "bribeFail": [
+    "Captive: \"Fuck you, cheap bitch!\"",
+    "Captive: \"Hell no!\"",
+    "Captive: \"You're fucking kidding me, right?\"",
+    "Captive: \"Lmao fuck off.\"",
+    "Captive: \"Yeah, gonna need more than that, buddy.\"",
+    "Captive: \"You think I'm that weak??\"",
+    "Captive: \"Get outta here.\""
+  ],
+  "talk": [
+    ": \"Tell me what I need to know, NOW! Please.\"",
+    ": \"Speak. About the organization or whatever.\"",
+    ": \"Could you tell me now, por favor?\"",
+    ": \"I know you want to get out of this, just talk.\"",
+    ": \"Do you enjoy being tortured? I'll keep going...it's kinda fun. Or you can talk.\"",
+    ": \"I love talking, do you love talking?\"",
+    ": \"Um. Could you please tell me now?\""
+  ],
+  "talkSuccess": [
+    "Captive: \"OK, OK!! I'LL SPILL!!\"",
+    "Captive: \"ALRIGHT FINE, STOP!\"",
+    "Captive: \"I'LL TELL YOU ANYTHING!\"",
+    "Captive: \"QUIT IT OK!!\"",
+    "Captive: \"Stop...ok...I'll spill...\"",
+    "Captive: \"Fine, I'll tell you whatever you need to know....\"",
+    "Captive: \"FUCK OK STOP I'LL TALK!\""
+  ],
+  "talkFail": [
+    "Captive: \"Fuck you!\"",
+    "Captive: \"No!\"",
+    "Captive: \"Fuck off!\"",
+    "Captive: \"No thanks, fed.\"",
+    "Captive: \"....\"",
+    "Captive: \"Are you serious?\"",
+    "Captive: \"Who even are you?\""
+  ],
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

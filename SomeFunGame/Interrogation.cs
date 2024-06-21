@@ -1,14 +1,33 @@
-﻿class Interrogation
+﻿using System.Text.Json;
+
+class Interrogation
 {
     private Interrogated victim;
     private Player player;
     private Kelly kelly;
+    private List<string> threaten { get; set; }
+    private List<string> bribe { get; set; }
+    private List<string> bribeSuccess { get; set; }
+    private List<string> bribeFail { get; set; }
+    private List<string> talk { get; set; }
+    private List<string> talkSuccess { get; set; }
+    private List<string> talkFail { get; set; }
 
     public Interrogation(Interrogated interrogated, Player player, Kelly kelly)
     {
         this.victim = interrogated;
         this.player = player;
         this.kelly = kelly;
+        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\InterrogationLines\Lines.json");
+        var jsonDocument = JsonDocument.Parse(jsonString);
+
+        this.threaten = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("threaten").GetRawText())!;
+        this.bribe = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("bribe").GetRawText())!;
+        this.bribeSuccess = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("bribeSuccess").GetRawText())!;
+        this.bribeFail = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("bribeFail").GetRawText())!;
+        this.talk = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("talk").GetRawText())!;
+        this.talkSuccess = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("talkSuccess").GetRawText())!;
+        this.talkFail = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("talkFail").GetRawText())!;
     }
 
     public void Interrogate()
@@ -23,8 +42,7 @@
             choice = choice.ToLower();
             if (choice == "threaten")
             {
-                Console.WriteLine(this.player.playerName + ": \"You like your family? I sure do. That's a threat, not a compliment..." +
-                    "nevermind.\"\n" +
+                Console.WriteLine(this.player.playerName + this.victim.GetRandomAttributeString(this.threaten) + "\n" +
                     " [You threaten the captive.]");
                 Console.ReadKey(true);
                 Random random = new Random();
@@ -46,8 +64,8 @@
             }
             else if (choice == "bribe")
             {
-                Console.WriteLine(this.player.playerName + ": \"Maybe you need a little convincing for when we set you free...*psst, we are " +
-                    "setting them free, right boss?*\"\n" +
+                Console.WriteLine(this.player.playerName + this.victim.GetRandomAttributeString(this.bribe) +
+                    "\n" +
                     " [How much money will you offer? You have " + this.player.getMoney() + " dollars.]");
                 string amnt = Console.ReadLine()!;
                 try
@@ -65,7 +83,7 @@
                         int num = random.Next(100);
                         if (num < chance)
                         {
-                            Console.WriteLine("Captive:\"Well hell yeah I'll tell ya!\"");
+                            Console.WriteLine(this.victim.GetRandomAttributeString(this.bribeSuccess));
                             Console.ReadKey(true);
                             this.player.addMoney(10);
                             this.kelly.addRep(15);
@@ -77,7 +95,7 @@
                         }
                         else
                         {
-                            Console.WriteLine("Captive:\"Fuck you, cheap bitch!\"");
+                            Console.WriteLine(this.victim.GetRandomAttributeString(this.bribeFail));
                             Console.ReadKey(true);
                         }
                     }
@@ -141,12 +159,12 @@
             }
             else if (choice.Contains("talk") || choice.Contains("captive"))
             {
-                Console.WriteLine(this.player.playerName + ": \"Tell me what I need to know, NOW! Please.\"");
+                Console.WriteLine(this.player.playerName + this.victim.GetRandomAttributeString(this.talk));
                 Console.ReadKey(true);
                 bool result = this.victim.infoAttempt();
                 if (result == true)
                 {
-                    Console.WriteLine("Captive:\"OK, OK!! I'LL SPILL!!\"");
+                    Console.WriteLine(this.victim.GetRandomAttributeString(this.talkSuccess));
                     Console.ReadKey(true);
                     this.player.addMoney(10);
                     this.kelly.addRep(10);
@@ -158,7 +176,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("Captive:\"Fuck you!\"");
+                    Console.WriteLine(this.victim.GetRandomAttributeString(this.talkFail));
                     Console.ReadKey(true);
                     this.victim.decreaseFear(1);
                     this.victim.increaseHealth(1);
