@@ -7,6 +7,7 @@ class FunGame
     private Kelly kelly;
     private Shop gear;
     private Interrogation interrogation;
+    private Script script;
     private string savePath = @"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Save\savePlayer.json";
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public FunGame()
@@ -29,6 +30,7 @@ class FunGame
                 this.player = new Player();
                 this.gear = new Shop(this.player);
                 this.kelly = new Kelly();
+                this.script = new Script(1, this.kelly);
                 this.player.setName();
                 intro();
                 tutorial();
@@ -44,7 +46,8 @@ class FunGame
                 string json = File.ReadAllText(savePath);
                 var data = JsonConvert.DeserializeObject<dynamic>(json)!;
                 this.player = JsonConvert.DeserializeObject<Player>(Convert.ToString(data.Player));
-                this.kelly = JsonConvert.DeserializeObject<Kelly>(Convert.ToString(data.Kelly));              
+                this.kelly = JsonConvert.DeserializeObject<Kelly>(Convert.ToString(data.Kelly));
+                this.script = new Script(this.player.getLevel(), this.kelly);
                 this.gear = new Shop(this.player);
                 break;
             }
@@ -107,6 +110,7 @@ class FunGame
                 File.WriteAllText(savePath, "{}");
                 break;
             }
+            this.script.loadScene(this.player.getLevel());
             Console.WriteLine("[Choose from the following options.]\nInterrogate     Talk to Kelly     Your Stats" +
             "\nBuy Gear        Inventory         Exit Game\n");
             string choice = Console.ReadLine()!;

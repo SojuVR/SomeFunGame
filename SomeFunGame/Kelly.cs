@@ -28,7 +28,7 @@ class Kelly
             Console.WriteLine("[She seems busy. Your relationship with her is " + this.level + ".]\n");
             Console.ReadKey(true);
         }
-        if (this.level >= 10 && this.level < 20)
+        if (this.level >= 10)
         {
             Console.WriteLine("Kelly: \"Hey, You're doing alright. I'm expecting more, though.\"" +
                 "\n[She seems a bit genuine. Your relationship with her is " + this.level + ".]\n");

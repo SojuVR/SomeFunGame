@@ -13,7 +13,7 @@ class Player
     {
         this.playerName = "IDFK";
         this.level = 1;
-        this.money = 0;
+        this.money = 10000;
         this.inventory = new List<string>();
     }
 

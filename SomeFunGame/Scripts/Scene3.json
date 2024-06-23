@@ -1,0 +1,175 @@
+[
+  {
+    "id": 1,
+    "text": "You are in a dark forest. Do you go left or right?",
+    "choices": [
+      {
+        "text": "Left",
+        "nextId": 2,
+        "kelly": 2
+      },
+      {
+        "text": "Right",
+        "nextId": 3,
+        "kelly": 2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "text": "You encounter a wild animal. Do you fight or flee?",
+    "choices": [
+      {
+        "text": "Fight",
+        "nextId": 4,
+        "kelly": 2
+      },
+      {
+        "text": "Flee",
+        "nextId": 5,
+        "kelly": 2
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "text": "You find a hidden treasure chest. Do you open it or leave it?",
+    "choices": [
+      {
+        "text": "Open it",
+        "nextId": 6,
+        "kelly": 2
+      },
+      {
+        "text": "Leave it",
+        "nextId": 7,
+        "kelly": 2
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "text": "You bravely fight the animal and win! Do you continue exploring or head home?",
+    "choices": [
+      {
+        "text": "Continue exploring",
+        "nextId": 8,
+        "kelly": 2
+      },
+      {
+        "text": "Head home",
+        "nextId": 9,
+        "kelly": 2
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "text": "You flee safely and find a safe path out of the forest. Do you take the path or explore more?",
+    "choices": [
+      {
+        "text": "Take the path",
+        "nextId": 10,
+        "kelly": 2
+      },
+      {
+        "text": "Explore more",
+        "nextId": 11,
+        "kelly": 2
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "text": "You open the chest and find gold! Do you take the gold or leave it?",
+    "choices": [
+      {
+        "text": "Take the gold",
+        "nextId": 12,
+        "kelly": 2
+      },
+      {
+        "text": "Leave it",
+        "nextId": 13,
+        "kelly": 2
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "text": "You leave the chest and continue your journey. Do you follow the path ahead or rest?",
+    "choices": [
+      {
+        "text": "Follow the path",
+        "nextId": 14,
+        "kelly": 2
+      },
+      {
+        "text": "Rest",
+        "nextId": 15,
+        "kelly": 2
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "text": "You discover an ancient ruin filled with secrets. Do you explore the ruin or leave?",
+    "choices": [
+      {
+        "text": "Explore the ruin",
+        "nextId": 16,
+        "kelly": 2
+      },
+      {
+        "text": "Leave",
+        "nextId": 17,
+        "kelly": 2
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "text": "You head home safely. The End.",
+    "choices": []
+  },
+  {
+    "id": 10,
+    "text": "You take the path and find your way out of the forest. The End.",
+    "choices": []
+  },
+  {
+    "id": 11,
+    "text": "You explore more and discover a hidden waterfall. The End.",
+    "choices": []
+  },
+  {
+    "id": 12,
+    "text": "You take the gold and live a wealthy life. The End.",
+    "choices": []
+  },
+  {
+    "id": 13,
+    "text": "You leave the gold and continue your journey, content with your adventure. The End.",
+    "choices": []
+  },
+  {
+    "id": 14,
+    "text": "You follow the path and discover a beautiful meadow. The End.",
+    "choices": []
+  },
+  {
+    "id": 15,
+    "text": "You rest and are soon found by a search party. The End.",
+    "choices": []
+  },
+  {
+    "id": 16,
+    "text": "You explore the ruin and uncover ancient artifacts. The End.",
+    "choices": []
+  },
+  {
+    "id": 17,
+    "text": "You leave the ruin and continue your adventures. The End.",
+    "choices": []
+  }
+]

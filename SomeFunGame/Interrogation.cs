@@ -87,9 +87,9 @@ class Interrogation
                             Console.ReadKey(true);
                             this.player.addMoney(10);
                             this.kelly.addRep(15);
-                            this.player.levelUp(2);
+                            this.player.levelUp(1);
                             Console.WriteLine("[You received 10 dollars and quite a bit of respect from Kelly.]\n");
-                            Console.WriteLine("[You levelled up twice.]\n");
+                            Console.WriteLine("[You levelled up.]\n");
                             Console.ReadKey(true);
                             return;
                         }
@@ -170,7 +170,7 @@ class Interrogation
                     this.kelly.addRep(10);
                     this.player.levelUp(1);
                     Console.WriteLine("[You received 10 dollars and some respect from Kelly.]\n");
-                    Console.WriteLine("[You levelled up once.]\n");
+                    Console.WriteLine("[You levelled up.]\n");
                     Console.ReadKey(true);
                     return;
                 }
