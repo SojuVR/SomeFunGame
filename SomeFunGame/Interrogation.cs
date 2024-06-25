@@ -30,7 +30,7 @@ class Interrogation
         this.talkFail = JsonSerializer.Deserialize<List<string>>(jsonDocument.RootElement.GetProperty("talkFail").GetRawText())!;
     }
 
-    public void Interrogate()
+    public void Interrogate(int type)
     {
         Console.WriteLine("[Kelly brings in the prisoner and briefs you.]");
         this.victim.describeInterrogated();
@@ -85,13 +85,24 @@ class Interrogation
                         {
                             Console.WriteLine(this.victim.GetRandomAttributeString(this.bribeSuccess));
                             Console.ReadKey(true);
-                            this.player.addMoney(10);
-                            this.kelly.addRep(15);
-                            this.player.levelUp(1);
-                            Console.WriteLine("[You received 10 dollars and quite a bit of respect from Kelly.]\n");
-                            Console.WriteLine("[You levelled up.]\n");
-                            Console.ReadKey(true);
-                            return;
+                            if (type == 1)
+                            {
+                                this.player.addMoney(10);
+                                this.kelly.addRep(15);
+                                this.player.levelUp(1);
+                                Console.WriteLine("[You received 10 dollars and quite a bit of respect from Kelly.]\n");
+                                Console.WriteLine("[You levelled up.]\n");
+                                Console.ReadKey(true);
+                                return;
+                            }
+                            else if (type == 2) 
+                            {
+                                this.player.addMoney(30);
+                                this.kelly.addRep(20);
+                                Console.WriteLine("[You received 30 dollars and a lot of respect from Kelly.]\n");
+                                Console.ReadKey(true);
+                                return;
+                            }
                         }
                         else
                         {
@@ -166,13 +177,24 @@ class Interrogation
                 {
                     Console.WriteLine(this.victim.GetRandomAttributeString(this.talkSuccess));
                     Console.ReadKey(true);
-                    this.player.addMoney(10);
-                    this.kelly.addRep(10);
-                    this.player.levelUp(1);
-                    Console.WriteLine("[You received 10 dollars and some respect from Kelly.]\n");
-                    Console.WriteLine("[You levelled up.]\n");
-                    Console.ReadKey(true);
-                    return;
+                    if (type == 1)
+                    {
+                        this.player.addMoney(10);
+                        this.kelly.addRep(10);
+                        this.player.levelUp(1);
+                        Console.WriteLine("[You received 10 dollars and some respect from Kelly.]\n");
+                        Console.WriteLine("[You levelled up.]\n");
+                        Console.ReadKey(true);
+                        return;
+                    }
+                    else if (type == 2)
+                    {
+                        this.player.addMoney(30);
+                        this.kelly.addRep(15);
+                        Console.WriteLine("[You received 30 dollars and quite a bit of respect from Kelly.]\n");
+                        Console.ReadKey(true);
+                        return;
+                    }
                 }
                 else
                 {

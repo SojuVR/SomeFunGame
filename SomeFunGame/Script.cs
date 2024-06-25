@@ -27,7 +27,7 @@ class Script
         this.finishedLevels.Add(playerLevel);
     }
 
-    public void loadScene(int level)
+    public bool loadScene(int level)
     {
         try
         {
@@ -36,20 +36,20 @@ class Script
             Sections = JsonConvert.DeserializeObject<List<Section>>(json)!;
             if (!finishedLevels.Contains(this.level))
             {
-                playScene();
+                return playScene();
             }
             else
             {
-                return;
+                return false;
             }
         }
         catch
         {
-            return;
+            return false;
         }
     }
 
-    private void playScene()
+    private bool playScene()
     {
         int currentId = 1;
         while (true)
@@ -68,9 +68,10 @@ class Script
             }
             catch
             {
-                break;
+                return false;
             }
         }
         finishedLevels.Add(this.level);
+        return true;
     }
 }

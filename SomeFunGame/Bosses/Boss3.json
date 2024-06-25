@@ -1,0 +1,14 @@
+{
+  "bossDesc": "[An incredibly frail man with long, black hair sits badly beaten before you.] Kelly: \"This is one of Antimerica's top dogs. He doesn't look like much, but he won't talk. As you can see, our other top interrogators beat him bad, but he hasn't said a word. He's incredibly weak because of it, watch out. We can't let him die. I figured you'd be able to do this, seeing you have claimed to be a top interrogator.\"",
+  "health": 10,
+  "fear": 100,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+
+}

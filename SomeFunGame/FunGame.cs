@@ -8,6 +8,7 @@ class FunGame
     private Shop gear;
     private Interrogation interrogation;
     private Script script;
+    private bool boss;
     private string savePath = @"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Save\savePlayer.json";
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public FunGame()
@@ -110,15 +111,21 @@ class FunGame
                 File.WriteAllText(savePath, "{}");
                 break;
             }
-            this.script.loadScene(this.player.getLevel());
+            boss = this.script.loadScene(this.player.getLevel());
+            if (boss == true)
+            {
+                interrogation = new Interrogation(new Interrogated(2, this.player.getLevel()), this.player, this.kelly);
+                interrogation.Interrogate(2);
+                boss = false;
+            }
             Console.WriteLine("[Choose from the following options.]\nInterrogate     Talk to Kelly     Your Stats" +
             "\nBuy Gear        Inventory         Exit Game\n");
             string choice = Console.ReadLine()!;
             choice = choice.ToLower();
             if(choice == "interrogate")
             {
-                interrogation = new Interrogation(new Interrogated(), this.player, this.kelly);
-                interrogation.Interrogate();
+                interrogation = new Interrogation(new Interrogated(1), this.player, this.kelly);
+                interrogation.Interrogate(1);
                 continue;
             }
             else if (choice.Contains("stats"))

@@ -1,1 +1,13 @@
-{}
+{
+  "Player": {
+    "playerName": "b",
+    "level": 2,
+    "money": 9900,
+    "inventory": [
+      "Knife"
+    ]
+  },
+  "Kelly": {
+    "level": 15
+  }
+}
