@@ -68,7 +68,7 @@ class Script
             }
             catch
             {
-                return false;
+                break;
             }
         }
         finishedLevels.Add(this.level);

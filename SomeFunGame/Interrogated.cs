@@ -44,7 +44,7 @@ class Interrogated
         {
             string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + level + ".json");
             var jsonDocument = JsonDocument.Parse(jsonString);
-            this.bossDesc = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("eyeColor").GetRawText())!;
+            this.bossDesc = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossDesc").GetRawText())!;
             this.bossHealth = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("health").GetRawText())!;
             this.bossFear = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("fear").GetRawText())!;
             this.healthNum = this.healthMax;
