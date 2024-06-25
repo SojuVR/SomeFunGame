@@ -7,10 +7,15 @@ public class Choice
     public int Kelly { get; set; }
 }
 
+public class Text
+{
+    public string Desc { get; set; }
+}
+
 public class Section
 {
     public int Id { get; set; }
-    public string Text { get; set; }
+    public List<Text> Texts { get; set; }
     public List<Choice> Choices { get; set; }
 }
 
@@ -57,13 +62,30 @@ class Script
             try
             {
                 Section currentSection = Sections.Find(section => section.Id == currentId)!;
-                Console.WriteLine(currentSection.Text);
+                for (int i = 0; i < currentSection.Texts.Count; i++)
+                {
+                    Console.WriteLine(currentSection.Texts[i].Desc);
+                    Console.ReadKey(true);
+                }
+                Console.WriteLine("");
                 for (int i = 0; i < currentSection.Choices.Count; i++)
                 {
                     Console.WriteLine($"{i + 1}. {currentSection.Choices[i].Text}");
                 }
                 int choice = int.Parse(Console.ReadLine()!) - 1;
-                currentId = currentSection.Choices[choice].NextId;
+                while (true)
+                {
+                    try
+                    {
+                        currentId = currentSection.Choices[choice].NextId;
+                        break;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("[Please choose one of the valid numbers.]");
+                        choice = int.Parse(Console.ReadLine()!) - 1;
+                    }
+                }
                 this.kelly.addRep(currentSection.Choices[choice].Kelly);
             }
             catch

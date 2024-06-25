@@ -1,175 +1,135 @@
 [
   {
     "id": 1,
-    "text": "You are in a dark forest. Do you go left or right?",
-    "choices": [
+    "texts": [
       {
-        "text": "Left",
-        "nextId": 2,
-        "kelly": 2
+        "desc": "[A man in a suit enters the room you and Kelly are working in.]"
       },
       {
-        "text": "Right",
+        "desc": "The Man: \"Kelly, good to see you. This must be your new...coworker...guess the last didn't work out?\""
+      },
+      {
+        "desc": "Kelly: \"You know me. I'm a tough boss. I'll give you the info about him later...he claims to be a pro. Interoggator, This is Mark, the director of the interrogation branch.\""
+      }
+    ],
+    "choices": [
+      {
+        "text": "[You are shaking your leg and chewing on a pencil like a child.] *Tommy Wiseau voice* \"Oh hi Mark!....what's up dude?\"",
+        "nextId": 2,
+        "kelly": -1
+      },
+      {
+        "text": "[You stand up to shake his hand.] \"Pleasure to meet you.\"",
         "nextId": 3,
-        "kelly": 2
+        "kelly": 1
       }
     ]
   },
   {
     "id": 2,
-    "text": "You encounter a wild animal. Do you fight or flee?",
-    "choices": [
+    "texts": [
       {
-        "text": "Fight",
-        "nextId": 4,
-        "kelly": 2
+        "desc": "[He stares bewildered at you.] Mark: \"Uh...hello.....Kelly, I need your help.\""
       },
       {
-        "text": "Flee",
+        "desc": "Kelly: \"Let me guess...you caught a big one?\""
+      },
+      {
+        "desc": "Mark: \"Yep. And he won't talk. You got any recommendations? [Kelly somewhat reluctantly looks at you.]\""
+      }
+    ],
+    "choices": [
+      {
+        "text": "\"ME ME ME ME\"",
+        "nextId": 4,
+        "kelly": 0
+      },
+      {
+        "text": "[Twirl your pencil around and stare at the ceiling]",
         "nextId": 5,
-        "kelly": 2
+        "kelly": -1
+      },
+      {
+        "text": "\"Oh nah bruh....\"",
+        "nextId": 6,
+        "kelly": -10
       }
     ]
   },
   {
     "id": 3,
-    "text": "You find a hidden treasure chest. Do you open it or leave it?",
-    "choices": [
+    "texts": [
       {
-        "text": "Open it",
-        "nextId": 6,
-        "kelly": 2
+        "desc": "[He shakes your hand.] Mark: \"Likewise. Kelly, we have an urgent situation.\""
       },
       {
-        "text": "Leave it",
-        "nextId": 7,
-        "kelly": 2
+        "desc": "Kelly: \"Let me guess...you caught a big one?\""
+      },
+      {
+        "desc": "Mark: \"Yep. And he won't talk. You got any recommendations? [Kelly turns to you with a slightly confident smirk.]\""
+      }
+    ],
+    "choices": [
+      {
+        "text": "[Stay silent.]",
+        "nextId": 5,
+        "kelly": -1
+      },
+      {
+        "text": "\"No thanks.\"",
+        "nextId": 6,
+        "kelly": -5
+      },
+      {
+        "text": "[You try to look confident.] \"I could handle this.\"",
+        "nextId": 4,
+        "kelly": 3
       }
     ]
   },
   {
     "id": 4,
-    "text": "You bravely fight the animal and win! Do you continue exploring or head home?",
-    "choices": [
+    "texts": [
       {
-        "text": "Continue exploring",
-        "nextId": 8,
-        "kelly": 2
+        "desc": "Kelly: \"And this is why I hired him.\""
       },
       {
-        "text": "Head home",
-        "nextId": 9,
-        "kelly": 2
+        "desc": "Mark: \"Fantastic! We will roll him out now. Meet you all in the interrogation room. Good luck, interrogator."
+      },
+      {
+        "desc": "Kelly: \"It was good to volunteer...let's go.\" [You both head the the interrogation room.]"
       }
-    ]
+    ],
+    "choices": []
   },
   {
     "id": 5,
-    "text": "You flee safely and find a safe path out of the forest. Do you take the path or explore more?",
-    "choices": [
+    "texts": [
       {
-        "text": "Take the path",
-        "nextId": 10,
-        "kelly": 2
+        "desc": "Kelly: \"My interrogator will do it.\""
       },
       {
-        "text": "Explore more",
-        "nextId": 11,
-        "kelly": 2
+        "desc": "Mark: \"Great! We will roll him out now. Meet you all in the interrogation room."
+      },
+      {
+        "desc": "Kelly: \"Next time, speak up.\" [You both head the the interrogation room.]"
       }
-    ]
+    ],
+    "choices": []
   },
   {
     "id": 6,
-    "text": "You open the chest and find gold! Do you take the gold or leave it?",
-    "choices": [
+    "texts": [
       {
-        "text": "Take the gold",
-        "nextId": 12,
-        "kelly": 2
+        "desc": "Kelly: \"Uh, no, my interrogator WILL do it.\""
       },
       {
-        "text": "Leave it",
-        "nextId": 13,
-        "kelly": 2
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "text": "You leave the chest and continue your journey. Do you follow the path ahead or rest?",
-    "choices": [
-      {
-        "text": "Follow the path",
-        "nextId": 14,
-        "kelly": 2
+        "desc": "Mark: \"If you say so....we will roll him out now. Meet you all in the interrogation room."
       },
       {
-        "text": "Rest",
-        "nextId": 15,
-        "kelly": 2
+        "desc": "Kelly: \"You idiot...come on. Do your job.\" [You both head the the interrogation room.]"
       }
-    ]
-  },
-  {
-    "id": 8,
-    "text": "You discover an ancient ruin filled with secrets. Do you explore the ruin or leave?",
-    "choices": [
-      {
-        "text": "Explore the ruin",
-        "nextId": 16,
-        "kelly": 2
-      },
-      {
-        "text": "Leave",
-        "nextId": 17,
-        "kelly": 2
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "text": "You head home safely. The End.",
-    "choices": []
-  },
-  {
-    "id": 10,
-    "text": "You take the path and find your way out of the forest. The End.",
-    "choices": []
-  },
-  {
-    "id": 11,
-    "text": "You explore more and discover a hidden waterfall. The End.",
-    "choices": []
-  },
-  {
-    "id": 12,
-    "text": "You take the gold and live a wealthy life. The End.",
-    "choices": []
-  },
-  {
-    "id": 13,
-    "text": "You leave the gold and continue your journey, content with your adventure. The End.",
-    "choices": []
-  },
-  {
-    "id": 14,
-    "text": "You follow the path and discover a beautiful meadow. The End.",
-    "choices": []
-  },
-  {
-    "id": 15,
-    "text": "You rest and are soon found by a search party. The End.",
-    "choices": []
-  },
-  {
-    "id": 16,
-    "text": "You explore the ruin and uncover ancient artifacts. The End.",
-    "choices": []
-  },
-  {
-    "id": 17,
-    "text": "You leave the ruin and continue your adventures. The End.",
+    ],
     "choices": []
   }
 ]
