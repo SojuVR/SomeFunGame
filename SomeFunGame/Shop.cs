@@ -1,14 +1,15 @@
-﻿
+﻿using Newtonsoft.Json;
+
+[Serializable]
 class Shop
 {
     private Player player;
-    private Dictionary<string, int> shop;
-    private HashSet<string> addedItems;
+    public Dictionary<string, int> shop;
+
     public Shop(Player player)
     {
         this.player = player;
         this.shop = new Dictionary<string, int>();
-        this.addedItems = new HashSet<string>();
     }
     public void buyGear()
     {
@@ -57,7 +58,7 @@ class Shop
                         {
                             Console.WriteLine("[You ordered: " + upper + "]\n");
                             this.player.subtractMoney(shop[upper]);
-                            shop.Remove(upper);
+                            this.shop.Remove(upper);
                             this.player.addToInventory(upper);
                             return;
                         }
@@ -83,20 +84,17 @@ class Shop
 
     public void addToShop()
     {
-        if (this.player.getLevel() >= 1 && !addedItems.Contains("Knife") && !this.player.inventory.Contains("Knife"))
+        if (this.player.getLevel() >= 1 && !this.shop.ContainsKey("Knife") && !this.player.inventory.Contains("Knife"))
         {
             this.shop.Add("Knife", 10);
-            addedItems.Add("Knife");
         }
-        if (this.player.getLevel() >= 2 && !addedItems.Contains("Tazer") && !this.player.inventory.Contains("Tazer"))
+        if (this.player.getLevel() >= 2 && !this.shop.ContainsKey("Tazer") && !this.player.inventory.Contains("Tazer"))
         {
             this.shop.Add("Tazer", 20);
-            addedItems.Add("Tazer");
         }
-        if (this.player.getLevel() >= 3 && !addedItems.Contains("Gun") && !this.player.inventory.Contains("Gun"))
+        if (this.player.getLevel() >= 3 && !this.shop.ContainsKey("Gun") && !this.player.inventory.Contains("Gun"))
         {
             this.shop.Add("Gun", 30);
-            addedItems.Add("Gun");
         }
     }
 }

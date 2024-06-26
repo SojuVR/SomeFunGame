@@ -8,12 +8,12 @@ class Player
     public string playerName;
     [JsonProperty] private int level;
     [JsonProperty] private int money;
-    [JsonProperty] public List<string> inventory;
+    public List<string> inventory;
     public Player()
     {
         this.playerName = "IDFK";
         this.level = 1;
-        this.money = 10;
+        this.money = 1000;
         this.inventory = new List<string>();
     }
 

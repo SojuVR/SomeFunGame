@@ -19,29 +19,28 @@ public class Section
     public List<Choice> Choices { get; set; }
 }
 
+[Serializable]
 class Script
 {
-    private int level;
     private Kelly kelly;
-    private HashSet<int> finishedLevels = new HashSet<int> { 0 };
+    private string player;
+    public HashSet<int> finishedLevels = new HashSet<int> { 0 };
     private List<Section> Sections { get; set; }
-    public Script(int playerLevel, Kelly kelly)
+    public Script(Kelly kelly, string playerName)
     {
         this.kelly = kelly;
-        this.level = playerLevel;
-        this.finishedLevels.Add(playerLevel);
+        this.player = playerName;
     }
 
     public bool loadScene(int level)
     {
         try
         {
-            this.level = level;
-            string json = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Scripts\Scene" + this.level + ".json");
+            string json = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Scripts\Scene" + level + ".json");
             Sections = JsonConvert.DeserializeObject<List<Section>>(json)!;
-            if (!finishedLevels.Contains(this.level))
+            if (!finishedLevels.Contains(level))
             {
-                return playScene();
+                return playScene(level);
             }
             else
             {
@@ -54,7 +53,7 @@ class Script
         }
     }
 
-    private bool playScene()
+    private bool playScene(int level)
     {
         int currentId = 1;
         while (true)
@@ -64,36 +63,45 @@ class Script
                 Section currentSection = Sections.Find(section => section.Id == currentId)!;
                 for (int i = 0; i < currentSection.Texts.Count; i++)
                 {
-                    Console.WriteLine(currentSection.Texts[i].Desc);
+                    string sentence = currentSection.Texts[i].Desc;
+                    sentence = sentence.Replace("playerName", this.player);
+                    Console.WriteLine(sentence);
                     Console.ReadKey(true);
                 }
                 Console.WriteLine("");
-                for (int i = 0; i < currentSection.Choices.Count; i++)
+                if (currentSection.Choices.Count > 1)
                 {
-                    Console.WriteLine($"{i + 1}. {currentSection.Choices[i].Text}");
+                    for (int i = 0; i < currentSection.Choices.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {currentSection.Choices[i].Text}");
+                    }
+                    int choice = 0;
+                    while (true)
+                    {
+                        try
+                        {
+                            choice = int.Parse(Console.ReadLine()!) - 1;
+                            currentId = currentSection.Choices[choice].NextId;
+                            break;
+                        }
+                        catch
+                        {
+                            Console.WriteLine("[Please choose one of the valid numbers.]");
+                        }
+                    }
+                    this.kelly.addRep(currentSection.Choices[choice].Kelly);
                 }
-                int choice = int.Parse(Console.ReadLine()!) - 1;
-                while (true)
+                else
                 {
-                    try
-                    {
-                        currentId = currentSection.Choices[choice].NextId;
-                        break;
-                    }
-                    catch
-                    {
-                        Console.WriteLine("[Please choose one of the valid numbers.]");
-                        choice = int.Parse(Console.ReadLine()!) - 1;
-                    }
+                    break;
                 }
-                this.kelly.addRep(currentSection.Choices[choice].Kelly);
             }
             catch
             {
                 break;
             }
         }
-        finishedLevels.Add(this.level);
+        finishedLevels.Add(level);
         return true;
     }
 }

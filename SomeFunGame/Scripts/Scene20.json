@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "texts": [
+      {
+        "desc": "Kelly: \"And this is why I hired playerName.\""
+      },
+      {
+        "desc": "Mark: \"Fantastic! We will roll him out now. Meet you all in the interrogation room. Good luck, playerName."
+      },
+      {
+        "desc": "Kelly: \"It was good to volunteer...let's go.\" [You both head the the interrogation room.]"
+      }
+    ],
+    "choices": []
+  }
+]

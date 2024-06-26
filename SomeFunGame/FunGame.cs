@@ -31,8 +31,8 @@ class FunGame
                 this.player = new Player();
                 this.gear = new Shop(this.player);
                 this.kelly = new Kelly();
-                this.script = new Script(1, this.kelly);
                 this.player.setName();
+                this.script = new Script(this.kelly, this.player.playerName);
                 intro();
                 tutorial();
                 break;
@@ -48,8 +48,10 @@ class FunGame
                 var data = JsonConvert.DeserializeObject<dynamic>(json)!;
                 this.player = JsonConvert.DeserializeObject<Player>(Convert.ToString(data.Player));
                 this.kelly = JsonConvert.DeserializeObject<Kelly>(Convert.ToString(data.Kelly));
-                this.script = new Script(this.player.getLevel(), this.kelly);
                 this.gear = new Shop(this.player);
+                this.script = new Script(this.kelly, this.player.playerName);
+                this.script.finishedLevels = JsonConvert.DeserializeObject<HashSet<int>>(Convert.ToString(data.Script));
+                this.gear.shop = JsonConvert.DeserializeObject<Dictionary<string, int>>(Convert.ToString(data.Shop));
                 break;
             }
             else
@@ -165,7 +167,8 @@ class FunGame
             }
             else if(choice.Contains("talk") || choice.Contains("kelly")) 
             {
-                this.kelly.speakToKelly();
+                int rel = this.kelly.speakToKelly();
+                this.script.loadScene(rel);
                 continue;
             }
             else if (choice.Contains("buy") || choice.Contains("gear")) 
@@ -179,7 +182,9 @@ class FunGame
                 var data = new
                 {
                     Player = this.player,
-                    Kelly = this.kelly
+                    Kelly = this.kelly,
+                    Script = this.script.finishedLevels,
+                    Shop = this.gear.shop
                 };
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 File.WriteAllText(savePath, json);
