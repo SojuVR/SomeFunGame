@@ -6,7 +6,7 @@ class Kelly
     [JsonProperty] private int level;
     public Kelly()
     {
-        this.level = 20;
+        this.level = 0;
     }
 
     public int speakToKelly()

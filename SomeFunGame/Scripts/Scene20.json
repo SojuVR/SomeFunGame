@@ -3,13 +3,13 @@
     "id": 1,
     "texts": [
       {
-        "desc": "Kelly: \"And this is why I hired playerName.\""
+        "desc": "Kelly: \"playerName, I just wanted to let you know you're doing pretty decent. Better than you look like you would do.\""
       },
       {
-        "desc": "Mark: \"Fantastic! We will roll him out now. Meet you all in the interrogation room. Good luck, playerName."
+        "desc": "playerName: \"Haha...yeah...I did say I'm an expert on my resume, didn't I?\""
       },
       {
-        "desc": "Kelly: \"It was good to volunteer...let's go.\" [You both head the the interrogation room.]"
+        "desc": "Kelly: \"True....doesn't change the fact that you look too nervous to even hurt a fly. Regardless, good work. I am taking a liking to you."
       }
     ],
     "choices": []
