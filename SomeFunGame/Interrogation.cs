@@ -12,6 +12,8 @@ class Interrogation
     private List<string> talk { get; set; }
     private List<string> talkSuccess { get; set; }
     private List<string> talkFail { get; set; }
+    private string bossSuccess { get; set; }
+    private string bossFail { get; set; }
 
     public Interrogation(Interrogated interrogated, Player player, Kelly kelly)
     {
@@ -99,6 +101,12 @@ class Interrogation
                             {
                                 this.player.addMoney(30);
                                 this.kelly.addRep(20);
+                                string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.player.getLevel() + ".json");
+                                var jsonDocument = JsonDocument.Parse(jsonString);
+
+                                this.bossSuccess = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossSuccess").GetRawText())!;
+                                Console.WriteLine(this.bossSuccess);
+                                Console.ReadKey(true);
                                 Console.WriteLine("[You received 30 dollars and a lot of respect from Kelly.]\n");
                                 Console.ReadKey(true);
                                 return;
@@ -144,6 +152,12 @@ class Interrogation
                         Console.WriteLine("[The captive stopped breathing. You seemed to have killed the captive.]\n" +
                             "[You return to your workstation defeated. You get no money and lose much respect from Kelly.]\n");
                         Console.ReadKey(true);
+                        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.player.getLevel() + ".json");
+                        var jsonDocument = JsonDocument.Parse(jsonString);
+
+                        this.bossFail = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossFail").GetRawText())!;
+                        Console.WriteLine(this.bossFail);
+                        Console.ReadKey(true);
                         this.kelly.addRep(-15);
                         return;
                     }
@@ -154,6 +168,12 @@ class Interrogation
                         Console.WriteLine("[The captive passed out. You won't be able to continue the interrogation.]\n" +
                             "[You return to your workstation defeated. You get no money and lose some respect from Kelly.]\n");
                         this.kelly.addRep(-10);
+                        Console.ReadKey(true);
+                        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.player.getLevel() + ".json");
+                        var jsonDocument = JsonDocument.Parse(jsonString);
+
+                        this.bossFail = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossFail").GetRawText())!;
+                        Console.WriteLine(this.bossFail);
                         Console.ReadKey(true);
                         return;
                     }
@@ -191,6 +211,12 @@ class Interrogation
                     {
                         this.player.addMoney(30);
                         this.kelly.addRep(15);
+                        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.player.getLevel() + ".json");
+                        var jsonDocument = JsonDocument.Parse(jsonString);
+
+                        this.bossSuccess = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossSuccess").GetRawText())!;
+                        Console.WriteLine(this.bossSuccess);
+                        Console.ReadKey(true);
                         Console.WriteLine("[You received 30 dollars and quite a bit of respect from Kelly.]\n");
                         Console.ReadKey(true);
                         return;

@@ -47,6 +47,8 @@ class Interrogated
             this.bossDesc = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossDesc").GetRawText())!;
             this.bossHealth = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("health").GetRawText())!;
             this.bossFear = JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("fear").GetRawText())!;
+            this.healthMax = this.bossHealth;
+            this.fearMax = this.bossFear;
             this.healthNum = this.healthMax;
             this.fearNum = 0;
         }
