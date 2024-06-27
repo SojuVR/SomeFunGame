@@ -1,9 +1,13 @@
 {
   "Player": {
-    "playerName": "jf",
-    "level": 3,
-    "money": 9650,
-    "inventory": [],
+    "playerName": "Brian",
+    "level": 4,
+    "money": 10010,
+    "inventory": [
+      "Fists",
+      "Tazer",
+      "Gun"
+    ],
     "bossNames": [
       "Jeffrey Easter"
     ],
@@ -12,11 +16,14 @@
     ]
   },
   "Kelly": {
-    "level": 54
+    "level": 12
   },
   "Script": [
     0,
-    3
+    3,
+    20
   ],
-  "Shop": {}
+  "Shop": {
+    "Knife": 10
+  }
 }

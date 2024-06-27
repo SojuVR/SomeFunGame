@@ -151,33 +151,55 @@ class Interrogation
                     this.victim.decreaseHealth(wound);
                     if (this.victim.getHealth() == 0)
                     {
-                        Console.WriteLine("[The captive stopped breathing. You seemed to have killed the captive.]\n" +
+                        if (type == 1)
+                        {
+                            Console.WriteLine("[The captive stopped breathing. You seemed to have killed the captive.]\n" +
                             "[You return to your workstation defeated. You get no money and lose much respect from Kelly.]\n");
-                        Console.ReadKey(true);
-                        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.player.getLevel() + ".json");
-                        var jsonDocument = JsonDocument.Parse(jsonString);
+                            this.kelly.addRep(-15);
+                            Console.ReadKey(true);
+                            return;
+                        }
+                        else if (type == 2)
+                        {
+                            Console.WriteLine("[The captive stopped breathing. You seemed to have killed the captive.]\n" +
+                            "[You return to your workstation defeated. You get no money and lose much respect from Kelly.]\n");
+                            Console.ReadKey(true);
+                            string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.player.getLevel() + ".json");
+                            var jsonDocument = JsonDocument.Parse(jsonString);
 
-                        this.bossFail = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossFail").GetRawText())!;
-                        Console.WriteLine(this.bossFail);
-                        Console.ReadKey(true);
-                        this.kelly.addRep(-15);
-                        return;
+                            this.bossFail = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossFail").GetRawText())!;
+                            Console.WriteLine(this.bossFail);
+                            Console.ReadKey(true);
+                            this.kelly.addRep(-12);
+                            return;
+                        }
                     }
                     int fear = this.player.inflictFear(force2, spot);
                     this.victim.increaseFear(fear);
                     if (this.victim.getFear() == this.victim.getMaxFear())
                     {
-                        Console.WriteLine("[The captive passed out. You won't be able to continue the interrogation.]\n" +
+                        if (type == 1)
+                        {
+                            Console.WriteLine("[The captive passed out. You won't be able to continue the interrogation.]\n" +
                             "[You return to your workstation defeated. You get no money and lose some respect from Kelly.]\n");
-                        this.kelly.addRep(-10);
-                        Console.ReadKey(true);
-                        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.player.getLevel() + ".json");
-                        var jsonDocument = JsonDocument.Parse(jsonString);
+                            this.kelly.addRep(-10);
+                            Console.ReadKey(true);
+                            return;
+                        }
+                        else if (type == 2)
+                        {
+                            Console.WriteLine("[The captive passed out. You won't be able to continue the interrogation.]\n" +
+                            "[You return to your workstation defeated. You get no money and lose some respect from Kelly.]\n");
+                            this.kelly.addRep(-10);
+                            Console.ReadKey(true);
+                            string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.player.getLevel() + ".json");
+                            var jsonDocument = JsonDocument.Parse(jsonString);
 
-                        this.bossFail = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossFail").GetRawText())!;
-                        Console.WriteLine(this.bossFail);
-                        Console.ReadKey(true);
-                        return;
+                            this.bossFail = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossFail").GetRawText())!;
+                            Console.WriteLine(this.bossFail);
+                            Console.ReadKey(true);
+                            return;
+                        }
                     }
                     int rep = this.player.affectKelly(force2);
                     this.kelly.addRep(rep);
