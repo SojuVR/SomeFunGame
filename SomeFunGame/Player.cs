@@ -9,12 +9,16 @@ class Player
     [JsonProperty] private int level;
     [JsonProperty] private int money;
     public List<string> inventory;
+    [JsonProperty] private List<string> bossNames;
+    [JsonProperty] private List<string> bossEvidence;
     public Player()
     {
         this.playerName = "IDFK";
         this.level = 1;
-        this.money = 10;
+        this.money = 10000;
         this.inventory = new List<string>();
+        this.bossNames = new List<string>();
+        this.bossEvidence = new List<string>();
     }
 
     public void setName()
@@ -136,6 +140,44 @@ class Player
         if (this.money < 0)
         {
             this.money = 0;
+        }
+    }
+
+    public void addBossName()
+    {
+        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.level + ".json");
+        var jsonDocument = JsonDocument.Parse(jsonString);
+
+        string name = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("name").GetRawText())!;
+        this.bossNames.Add(name);
+    }
+
+    public void addBossEvidence()
+    {
+        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Bosses\Boss" + this.level + ".json");
+        var jsonDocument = JsonDocument.Parse(jsonString);
+
+        string evidence = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("evidence").GetRawText())!;
+        this.bossEvidence.Add(evidence);
+    }
+
+    public void displayNames()
+    {
+        Console.WriteLine("Current Terrorist Boss Detainees:\n");
+        foreach (string name in this.bossNames)
+        {
+            Console.WriteLine(name);
+        }
+        Console.ReadKey(true);
+    }
+
+    public void displayEvidence()
+    {
+        Console.WriteLine("The evidence so far:\n");
+        foreach (string evidence in this.bossEvidence)
+        {
+            Console.WriteLine(evidence + "\n");
+            Console.ReadKey(true);
         }
     }
 }

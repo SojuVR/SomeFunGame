@@ -109,6 +109,8 @@ class Interrogation
                                 Console.ReadKey(true);
                                 Console.WriteLine("[You received 30 dollars and a lot of respect from Kelly.]\n");
                                 Console.ReadKey(true);
+                                this.player.addBossName();
+                                this.player.addBossEvidence();
                                 return;
                             }
                         }
@@ -219,6 +221,8 @@ class Interrogation
                         Console.ReadKey(true);
                         Console.WriteLine("[You received 30 dollars and quite a bit of respect from Kelly.]\n");
                         Console.ReadKey(true);
+                        this.player.addBossName();
+                        this.player.addBossEvidence();
                         return;
                     }
                 }

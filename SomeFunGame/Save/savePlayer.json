@@ -1,20 +1,22 @@
 {
   "Player": {
     "playerName": "jf",
-    "level": 2,
-    "money": 800,
-    "inventory": [
-      "Knife",
-      "Fists"
+    "level": 3,
+    "money": 9650,
+    "inventory": [],
+    "bossNames": [
+      "Jeffrey Easter"
+    ],
+    "bossEvidence": [
+      "Jeffrey Easter, a high-ranking member of the terrorist organization Antimerica, revealed Antonio Vargas is his boss, a built man working from South Philly."
     ]
   },
   "Kelly": {
-    "level": 35
+    "level": 54
   },
   "Script": [
-    0
+    0,
+    3
   ],
-  "Shop": {
-    "Tazer": 20
-  }
+  "Shop": {}
 }

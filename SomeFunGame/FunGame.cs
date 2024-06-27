@@ -121,7 +121,7 @@ class FunGame
                 boss = false;
             }
             Console.WriteLine("[Choose from the following options.]\nInterrogate     Talk to Kelly     Your Stats" +
-            "\nBuy Gear        Inventory         Exit Game\n");
+            "\nBuy Gear        Inventory         Hallway\nExit Game\n");
             string choice = Console.ReadLine()!;
             choice = choice.ToLower();
             if(choice == "interrogate")
@@ -134,6 +134,44 @@ class FunGame
             {
                 Console.WriteLine("[You are level " + player.getLevel() + " and have " + this.player.getMoney() + " dollars.]\n");
                 Console.ReadKey(true);
+                continue;
+            }
+            else if (choice == "hallway")
+            {
+                while (true)
+                {
+                    Console.WriteLine("[Choose from the following options.]\nCellblock     Evidence Room     Common Room" +
+            "\nYour Office   Go Home");
+                    string room = Console.ReadLine()!;
+                    room = room.ToLower();
+                    if (room.Contains("office") || room.Contains("your"))
+                    {
+                        break;
+                    }
+                    else if (room == "cellblock")
+                    {
+                        this.player.displayNames();
+                        continue;
+                    }
+                    else if (room.Contains("evidence"))
+                    {
+                        this.player.displayEvidence();
+                        continue;
+                    }
+                    else if (room.Contains("common"))
+                    {
+                        break;
+                    }
+                    else if (room.Contains("go") || room.Contains("home"))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n[That was not an option.]");
+                        continue;
+                    }
+                }
                 continue;
             }
             else if (choice == "inventory")
