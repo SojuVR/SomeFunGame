@@ -67,11 +67,12 @@ class Interrogation
                 try
                 {
                     this.player.getPowerups();
+                    Console.WriteLine("Exit Powerups\n");
                     Console.WriteLine("[Which would you like to use?]");
                     string drink = Console.ReadLine()!;
                     drink = drink.ToLower();
                     string drink2 = char.ToUpper(drink[0]) + drink.Substring(1);
-                    if (!this.player.powerups.Contains(drink2))
+                    if (!this.player.powerups.Contains(drink2) && drink2 != "Exit")
                     {
                         throw new Exception();
                     }
@@ -80,20 +81,21 @@ class Interrogation
                         this.player.setFatigue(0);
                         Console.WriteLine("\n[You drank a coffee. The effects will last this interrogation.]");
                         Console.ReadKey(true);
-                        continue;
                     }
                     else if (drink2 == "Shake")
                     {
                         shake = true;
                         Console.WriteLine("\n[You drank a protein shake. The effects will last this interrogation.]");
                         Console.ReadKey(true);
-                        continue;
                     }
                     else if (drink2 == "Monster")
                     {
                         monster = true;
                         Console.WriteLine("\n[You drank a Monster. The effects will last this interrogation.]");
                         Console.ReadKey(true);
+                    }
+                    else if (drink2 == "Exit")
+                    {
                         continue;
                     }
                     this.player.removePowerups(drink2);

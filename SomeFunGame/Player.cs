@@ -82,6 +82,7 @@ class Player
         {
             fear *= 2;
         }
+        Console.WriteLine(fear);
         return (int)fear;
     }
 
@@ -136,8 +137,8 @@ class Player
 
     public void getPowerups()
     {
-        Console.WriteLine("Your drinks:");
-        for (int i = 0; i < powerups.Count; i += 2)
+        Console.WriteLine("\nYour drinks:");
+        for (int i = 0; i < powerups.Count; i += 1)
         {
             Console.WriteLine(powerups[i]);
         }

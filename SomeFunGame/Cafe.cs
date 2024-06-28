@@ -63,6 +63,7 @@ class Cafe
                             catch
                             {
                                 Console.WriteLine("[You can only hold one drink of each at a time.]");
+                                Console.ReadKey(true);
                                 break;
                             }
                         }
