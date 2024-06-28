@@ -108,7 +108,7 @@ class Interrogation
                     continue;
                 }
             }
-            else if (choice.Contains("give"))
+            else if (choice == "give up")
             {
                 Console.WriteLine("[You gave up and called it quits. You lost some respect from Kelly.]\n");
                 Console.ReadKey(true);
@@ -198,7 +198,7 @@ class Interrogation
                     continue;
                 }
             }
-            else if (choice.Contains("use") || choice.Contains("force"))
+            else if (choice == "use force")
             {
                 try
                 {
@@ -293,7 +293,7 @@ class Interrogation
                     continue;
                 }
             }
-            else if (choice.Contains("talk") || choice.Contains("captive"))
+            else if (choice == "talk to captive")
             {
                 Console.WriteLine(this.player.playerName + this.victim.GetRandomAttributeString(this.talk));
                 Console.ReadKey(true);

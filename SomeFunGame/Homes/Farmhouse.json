@@ -1,0 +1,14 @@
+{
+  "desc": "A beautiful, secluded house with a wrap-around porch. Work six days without needing to sleep. Utility: 50",
+  "homeEffect": "Allows you to work six days in a row before needing to sleep. Utility: 50",
+  "utility": 50,
+  "fatigue": 16,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

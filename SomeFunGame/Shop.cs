@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-
+﻿
 [Serializable]
 class Shop
 {

@@ -59,7 +59,8 @@ class FunGame
                 this.gear.shop = JsonConvert.DeserializeObject<Dictionary<string, int>>(Convert.ToString(data.Shop));
                 this.home = new Home(this.player);
                 this.cafe = new Cafe(this.player);
-                this.home.utility = JsonConvert.DeserializeObject<int>(Convert.ToString(data.Home));
+                this.home.currentHome = JsonConvert.DeserializeObject<string>(Convert.ToString(data.Home));
+                this.home.setUtility();
                 break;
             }
             else
@@ -107,8 +108,9 @@ class FunGame
     void tutorial()
     {
         Console.WriteLine("[Your job will be to interrogate prisoners for information. Kelly was told you convince captives quickly. " +
-            "The longer you take and the more painful you make it, the less she will like you. She's not much for blood. If she dislikes you enough, " +
-            "you'll lose your job. As you become more successful, more tools will be available to you. Make interrogations fast. Good luck.]\n");
+            "The longer you take and the more painful you make it, the less she will like you. She likes to keep things quick. If she dislikes you enough, " +
+            "you'll lose your job. As you become more successful, more tools will be available to you. Make interrogations fast. You will earn money" +
+            " for powerups, tools, and to pay your daily rent. Good luck.]\n");
         Console.ReadKey(true);
     }
 
@@ -132,7 +134,7 @@ class FunGame
             if (time > 5)
             {
                 time = 1;
-                bool result = this.player.addFatigue();
+                bool result = this.player.addFatigue(this.home.getBuff());
                 if (result == true)
                 {
                     float lostMoney = (this.player.getMoney() * 3) / 4;
@@ -142,7 +144,6 @@ class FunGame
                     this.player.subtractMoney(lostMoneyInt);
                     this.player.setFatigue(0);
                 }
-                this.player.subtractMoney(this.home.utility);
             }
             currentTime();
             Console.WriteLine("[Choose from the following options.]\nInterrogate     Talk to Kelly     Your Stats" +
@@ -156,7 +157,7 @@ class FunGame
                 time += 1;
                 continue;
             }
-            else if (choice.Contains("stats"))
+            else if (choice == "your stats")
             {
                 Console.WriteLine("[You are level " + player.getLevel() + " and have " + this.player.getMoney() + " dollars.]");
                 this.player.status();
@@ -169,10 +170,10 @@ class FunGame
                 {
                     currentTime();
                     Console.WriteLine("[Choose from the following options.]\nCellblock     Evidence Room     Cafe" +
-            "\nYour Office   Go Home");
+                    "\nYour Office   Go Home");
                     string room = Console.ReadLine()!;
                     room = room.ToLower();
-                    if (room.Contains("office") || room.Contains("your"))
+                    if (room == "your office")
                     {
                         break;
                     }
@@ -181,7 +182,7 @@ class FunGame
                         this.player.displayNames();
                         continue;
                     }
-                    else if (room.Contains("evidence"))
+                    else if (room == "evidence")
                     {
                         this.player.displayEvidence();
                         continue;
@@ -193,10 +194,13 @@ class FunGame
                         time += 1;
                         continue;
                     }
-                    else if (room.Contains("go") || room.Contains("home"))
+                    else if (room == "go home")
                     {
-                        this.home.sleep();
-                        time = 1;
+                        bool result = this.home.goHome();
+                        if (result == true)
+                        {
+                            time = 1;
+                        }
                         break;
                     }
                     else
@@ -236,19 +240,19 @@ class FunGame
                     }
                 }
             }
-            else if(choice.Contains("talk") || choice.Contains("kelly")) 
+            else if(choice == "talk to kelly") 
             {
                 int rel = this.kelly.speakToKelly();
                 this.script.loadScene(rel);
                 continue;
             }
-            else if (choice.Contains("buy") || choice.Contains("gear")) 
+            else if (choice == "buy gear") 
             {
                 this.gear.addToShop();
                 this.gear.buyGear();
                 continue;
             }
-            else if (choice.Contains("exit")) 
+            else if (choice == "exit game") 
             {
                 var data = new
                 {
@@ -256,7 +260,7 @@ class FunGame
                     Kelly = this.kelly,
                     Script = this.script.finishedLevels,
                     Shop = this.gear.shop,
-                    Home = this.home.utility,
+                    Home = this.home.currentHome,
                 };
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 File.WriteAllText(savePath, json);

@@ -1,0 +1,14 @@
+{
+  "desc": "A three-story narrow apartment that offers a lot more room than an apartment. Work five days without needing to sleep. Utility: 45",
+  "homeEffect": "Allows you to work five days in a row before needing to sleep. Utility: 45",
+  "utility": 45,
+  "fatigue": 14,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

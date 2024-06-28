@@ -1,0 +1,14 @@
+{
+  "desc": "One bed one bath place with a roomy living room and kitchen. Work four days without needing to sleep. Utility: 40",
+  "homeEffect": "Allows you to work four days in a row before needing to sleep. Utility: 40",
+  "utility": 40,
+  "fatigue": 9,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

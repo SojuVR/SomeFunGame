@@ -1,0 +1,14 @@
+{
+  "desc": "A tiny but comfy home for you to kick back and relax in. Work three days without needing to sleep. Utility: 30",
+  "homeEffect": "Allows you to work three days in a row before needing to sleep. Utility: 30",
+  "utility": 30,
+  "fatigue": 0,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

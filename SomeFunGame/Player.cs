@@ -103,6 +103,15 @@ class Player
         Console.WriteLine(desc + "\n");
     }
 
+    public void houseDescription(string force)
+    {
+        string fileName = force + ".json";
+        string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Homes\" + fileName);
+        var jsonDocument = JsonDocument.Parse(jsonString);
+        string desc = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("desc").GetRawText())!;
+        Console.WriteLine(desc + "\n");
+    }
+
     public int getLevel()
     {
         return this.level;
