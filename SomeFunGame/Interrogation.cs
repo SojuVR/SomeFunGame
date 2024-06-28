@@ -34,12 +34,15 @@ class Interrogation
 
     public void Interrogate(int type)
     {
+        double fatigue = this.player.getFatigue();
+        bool shake = false;
+        bool monster = false;
         Console.WriteLine("[Kelly brings in the prisoner and briefs you.]");
         this.victim.describeInterrogated();
         while (true)
         {
             Console.WriteLine("\n[Choose from the following options.]\nUse force     Talk to captive     Threaten" +
-            "\nBribe         Status              Give up\n");
+            "\nBribe         Status              Powerups\nGive up\n");
             string choice = Console.ReadLine()!;
             choice = choice.ToLower();
             if (choice == "threaten")
@@ -48,15 +51,69 @@ class Interrogation
                     " [You threaten the captive.]");
                 Console.ReadKey(true);
                 Random random = new Random();
-                this.victim.increaseFear(random.Next(5));
+                if (monster == true) 
+                {
+                    this.victim.increaseFear(random.Next(5) * 2);
+                }
+                else if (monster == false)
+                {
+                    this.victim.increaseFear(random.Next(5));
+                }
                 this.kelly.addRep(-1);
                 continue;
+            }
+            if (choice == "powerups")
+            {
+                try
+                {
+                    this.player.getPowerups();
+                    Console.WriteLine("[Which would you like to use?]");
+                    string drink = Console.ReadLine()!;
+                    drink = drink.ToLower();
+                    string drink2 = char.ToUpper(drink[0]) + drink.Substring(1);
+                    if (!this.player.powerups.Contains(drink2))
+                    {
+                        throw new Exception();
+                    }
+                    if (drink2  == "Coffee")
+                    {
+                        this.player.setFatigue(0);
+                        Console.WriteLine("\n[You drank a coffee. The effects will last this interrogation.]");
+                        Console.ReadKey(true);
+                        continue;
+                    }
+                    else if (drink2 == "Shake")
+                    {
+                        shake = true;
+                        Console.WriteLine("\n[You drank a protein shake. The effects will last this interrogation.]");
+                        Console.ReadKey(true);
+                        continue;
+                    }
+                    else if (drink2 == "Monster")
+                    {
+                        monster = true;
+                        Console.WriteLine("\n[You drank a Monster. The effects will last this interrogation.]");
+                        Console.ReadKey(true);
+                        continue;
+                    }
+                    this.player.removePowerups(drink2);
+                    continue;
+                }
+                catch
+                {
+                    Console.WriteLine("[Your choice was invalid.]\n");
+                    Console.ReadKey(true);
+                    continue;
+                }
             }
             else if (choice.Contains("give"))
             {
                 Console.WriteLine("[You gave up and called it quits. You lost some respect from Kelly.]\n");
                 Console.ReadKey(true);
                 this.kelly.addRep(-20);
+                this.player.setFatigue(fatigue);
+                shake = false;
+                monster = false;
                 return;
             }
             else if (choice == "status")
@@ -95,6 +152,9 @@ class Interrogation
                                 Console.WriteLine("[You received 10 dollars and quite a bit of respect from Kelly.]\n");
                                 Console.WriteLine("[You levelled up.]\n");
                                 Console.ReadKey(true);
+                                this.player.setFatigue(fatigue);
+                                shake = false;
+                                monster = false;
                                 return;
                             }
                             else if (type == 2) 
@@ -111,6 +171,9 @@ class Interrogation
                                 Console.ReadKey(true);
                                 this.player.addBossName();
                                 this.player.addBossEvidence();
+                                this.player.setFatigue(fatigue);
+                                shake = false;
+                                monster = false;
                                 return;
                             }
                         }
@@ -151,7 +214,7 @@ class Interrogation
                     Console.WriteLine("[Where would you like to use it?]");
                     string spot = Console.ReadLine()!;
                     spot = spot.ToLower();
-                    int wound = this.player.inflictWound(force2, spot);
+                    int wound = this.player.inflictWound(force2, spot, shake);
                     this.victim.decreaseHealth(wound);
                     if (this.victim.getHealth() == 0)
                     {
@@ -161,6 +224,9 @@ class Interrogation
                             "[You return to your workstation defeated. You get no money and lose much respect from Kelly.]\n");
                             this.kelly.addRep(-15);
                             Console.ReadKey(true);
+                            this.player.setFatigue(fatigue);
+                            shake = false;
+                            monster = false;
                             return;
                         }
                         else if (type == 2)
@@ -175,10 +241,13 @@ class Interrogation
                             Console.WriteLine(this.bossFail);
                             Console.ReadKey(true);
                             this.kelly.addRep(-12);
+                            this.player.setFatigue(fatigue);
+                            shake = false;
+                            monster = false;
                             return;
                         }
                     }
-                    int fear = this.player.inflictFear(force2, spot);
+                    int fear = this.player.inflictFear(force2, spot, monster);
                     this.victim.increaseFear(fear);
                     if (this.victim.getFear() == this.victim.getMaxFear())
                     {
@@ -188,6 +257,9 @@ class Interrogation
                             "[You return to your workstation defeated. You get no money and lose some respect from Kelly.]\n");
                             this.kelly.addRep(-10);
                             Console.ReadKey(true);
+                            this.player.setFatigue(fatigue);
+                            shake = false;
+                            monster = false;
                             return;
                         }
                         else if (type == 2)
@@ -202,6 +274,9 @@ class Interrogation
                             this.bossFail = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossFail").GetRawText())!;
                             Console.WriteLine(this.bossFail);
                             Console.ReadKey(true);
+                            this.player.setFatigue(fatigue);
+                            shake = false;
+                            monster = false;
                             return;
                         }
                     }
@@ -233,6 +308,9 @@ class Interrogation
                         Console.WriteLine("[You received 10 dollars and some respect from Kelly.]\n");
                         Console.WriteLine("[You levelled up.]\n");
                         Console.ReadKey(true);
+                        this.player.setFatigue(fatigue);
+                        shake = false;
+                        monster = false;
                         return;
                     }
                     else if (type == 2)
@@ -249,6 +327,9 @@ class Interrogation
                         Console.ReadKey(true);
                         this.player.addBossName();
                         this.player.addBossEvidence();
+                        this.player.setFatigue(fatigue);
+                        shake = false;
+                        monster = false;
                         return;
                     }
                 }

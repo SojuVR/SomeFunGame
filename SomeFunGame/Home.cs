@@ -13,6 +13,6 @@ class Home
 
     public void sleep()
     {
-        this.player.resetFatigue();
+        this.player.setFatigue(0);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "desc": "This drink will help you instill twice the fear into your captive for one interrogation. Does not stack.",
+  "effect": 2,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

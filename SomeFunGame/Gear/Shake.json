@@ -1,0 +1,12 @@
+{
+  "desc": "This drink will help you inflict twice the damage on your captive for one interrogation.",
+  "effect": 2,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

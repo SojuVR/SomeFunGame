@@ -1,0 +1,12 @@
+{
+  "desc": "This drink will prevent fatigue from affecting your interrogation abilities for one interrogation. Does not stack.",
+  "effect": 0,
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ]
+}

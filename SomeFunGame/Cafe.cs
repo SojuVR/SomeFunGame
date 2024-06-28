@@ -53,10 +53,18 @@ class Cafe
                         }
                         else if (response == "yes")
                         {
-                            Console.WriteLine("[You ordered: " + upper + "]\n");
-                            this.player.subtractMoney(shop[upper]);
-                            this.player.addToPowerups(upper);
-                            return;
+                            try
+                            {
+                                Console.WriteLine("[You ordered: " + upper + "]\n");
+                                this.player.subtractMoney(shop[upper]);
+                                this.player.addToPowerups(upper);
+                                break;
+                            }
+                            catch
+                            {
+                                Console.WriteLine("[You can only hold one drink of each at a time.]");
+                                break;
+                            }
                         }
                         else
                         {

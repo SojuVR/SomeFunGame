@@ -48,7 +48,7 @@ class Player
         this.level += xp;
     }
 
-    public int inflictWound(string force, string spot)
+    public int inflictWound(string force, string spot, bool shake)
     {
         string fileName = force + ".json";
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
@@ -58,12 +58,16 @@ class Player
         int mult = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
         Random random = new Random();
         double dmg = ((random.Next(min, max + 1)) * mult) * (1 - fatigue);
+        if (shake == true)
+        {
+            dmg *= 2;
+        }
         string desc = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty(spot + "Desc").GetRawText())!;
         Console.WriteLine(desc);
         return (int)dmg;
     }
 
-    public int inflictFear(string force, string spot)
+    public int inflictFear(string force, string spot, bool monster)
     {
         string fileName = force + ".json";
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
@@ -74,6 +78,10 @@ class Player
         Console.ReadKey(true);
         Random random = new Random();
         double fear = ((random.Next(min, max + 1)) * mult) * (1 - fatigue);
+        if (monster == true)
+        {
+            fear *= 2;
+        }
         return (int)fear;
     }
 
@@ -126,6 +134,16 @@ class Player
         Console.WriteLine();
     }
 
+    public void getPowerups()
+    {
+        Console.WriteLine("Your drinks:");
+        for (int i = 0; i < powerups.Count; i += 2)
+        {
+            Console.WriteLine(powerups[i]);
+        }
+        Console.WriteLine();
+    }
+
     public void addToInventory(string gear)
     {
         this.inventory.Add(gear);
@@ -133,7 +151,19 @@ class Player
 
     public void addToPowerups(string drink)
     {
-        this.powerups.Add(drink);
+        if (!this.powerups.Contains(drink))
+        {
+            this.powerups.Add(drink);
+        }
+        else
+        {
+            throw new Exception();
+        }
+    }
+
+    public void removePowerups(string drink)
+    {
+        this.powerups.Remove(drink);
     }
 
     public void addMoney(int money)
@@ -202,9 +232,9 @@ class Player
         return false;
     }
 
-    public void resetFatigue()
+    public void setFatigue(double num)
     {
-        fatigue = 0;
+        fatigue = num;
     }
 
     public void decreaseFatigue(double buff)
@@ -212,8 +242,13 @@ class Player
         fatigue -= buff;
         if (fatigue < 0)
         {
-            resetFatigue();
+            setFatigue(0);
         }
+    }
+
+    public double getFatigue()
+    {
+        return fatigue;
     }
 
     public void status()

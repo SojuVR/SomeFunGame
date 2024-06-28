@@ -140,7 +140,7 @@ class FunGame
                     int lostMoneyInt = (int)lostMoney;
                     Console.WriteLine("[You collapse from exhaustion. A hospital bills you " + lostMoneyInt + " dollars.]");
                     this.player.subtractMoney(lostMoneyInt);
-                    this.player.resetFatigue();
+                    this.player.setFatigue(0);
                 }
                 this.player.subtractMoney(this.home.utility);
             }
