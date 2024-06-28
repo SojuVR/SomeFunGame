@@ -14,13 +14,13 @@ class Shop
     {
         if (this.shop.Count == 0)
         {
-            Console.WriteLine("[There are no items to buy.]\n");
+            Console.WriteLine("\n[There are no items to buy.]\n");
             Console.ReadKey(true);
             return;
         }
         while (true)
         {
-            Console.WriteLine("[Choose an item to buy.]");
+            Console.WriteLine("\n[Choose an item to buy.]");
             foreach (KeyValuePair<string, int> g in shop)
             {
                 Console.WriteLine(string.Format("{0,-5}", g.Key) + "     $" + g.Value);
@@ -55,7 +55,7 @@ class Shop
                         }
                         else if (response == "yes")
                         {
-                            Console.WriteLine("[You ordered: " + upper + "]\n");
+                            Console.WriteLine("\n[You ordered: " + upper + "]\n");
                             this.player.subtractMoney(shop[upper]);
                             this.shop.Remove(upper);
                             this.player.addToInventory(upper);
@@ -63,19 +63,19 @@ class Shop
                         }
                         else
                         {
-                            Console.WriteLine("[That was not a valid response].\n");
+                            Console.WriteLine("\n[That was not a valid response].\n");
                         }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("[You don't have enough money.]");
+                    Console.WriteLine("\n[You don't have enough money.]");
                     continue;
                 }
             }
             else
             {
-                Console.WriteLine("[That is not an available item to order.]");
+                Console.WriteLine("\n[That is not an available item to order.]");
                 continue;
             }
         }

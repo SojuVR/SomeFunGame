@@ -28,7 +28,7 @@ class Player
 
     public void setName()
     {
-        Console.Write("Enter your desired name: ");
+        Console.Write("\nEnter your desired name: ");
         string pattern = @"^.{1,14}$"; // Pattern to match one or more digits
         string input = Console.ReadLine()!;
 
@@ -36,7 +36,7 @@ class Player
 
         while (!match.Success)
         {
-            Console.WriteLine("14 characters max. Cannot be blank.");
+            Console.WriteLine("\n14 characters max. Cannot be blank.");
             input = Console.ReadLine()!;
             match = Regex.Match(input, pattern);
         }
@@ -63,7 +63,7 @@ class Player
             dmg *= 2;
         }
         string desc = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty(spot + "Desc").GetRawText())!;
-        Console.WriteLine(desc);
+        Console.WriteLine("\n" + desc);
         return (int)dmg;
     }
 
@@ -100,7 +100,7 @@ class Player
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Gear\" + fileName);
         var jsonDocument = JsonDocument.Parse(jsonString);
         string desc = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("desc").GetRawText())!;
-        Console.WriteLine(desc + "\n");
+        Console.WriteLine("\n" + desc + "\n");
     }
 
     public void houseDescription(string force)
@@ -109,7 +109,7 @@ class Player
         string jsonString = File.ReadAllText(@"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Homes\" + fileName);
         var jsonDocument = JsonDocument.Parse(jsonString);
         string desc = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("desc").GetRawText())!;
-        Console.WriteLine(desc + "\n");
+        Console.WriteLine("\n" + desc + "\n");
     }
 
     public int getLevel()
@@ -128,7 +128,7 @@ class Player
         {
             this.inventory.Add("Fists");
         }
-        Console.WriteLine("Your arsenal consists of:");
+        Console.WriteLine("\nYour arsenal consists of:");
         for (int i = 0; i < inventory.Count; i+=2)
         {
             if (i + 1 < inventory.Count)
@@ -212,7 +212,7 @@ class Player
 
     public void displayNames()
     {
-        Console.WriteLine("Current Terrorist Boss Detainees:\n");
+        Console.WriteLine("\nCurrent Terrorist Boss Detainees:\n");
         foreach (string name in this.bossNames)
         {
             Console.WriteLine(name);
@@ -222,7 +222,7 @@ class Player
 
     public void displayEvidence()
     {
-        Console.WriteLine("The evidence so far:\n");
+        Console.WriteLine("\nThe evidence so far:\n");
         foreach (string evidence in this.bossEvidence)
         {
             Console.WriteLine(evidence + "\n");

@@ -37,7 +37,7 @@ class Interrogation
         double fatigue = this.player.getFatigue();
         bool shake = false;
         bool monster = false;
-        Console.WriteLine("[Kelly brings in the prisoner and briefs you.]");
+        Console.WriteLine("\n[Kelly brings in the prisoner and briefs you.]");
         this.victim.describeInterrogated();
         while (true)
         {
@@ -47,7 +47,7 @@ class Interrogation
             choice = choice.ToLower();
             if (choice == "threaten")
             {
-                Console.WriteLine(this.player.playerName + this.victim.GetRandomAttributeString(this.threaten) + "\n" +
+                Console.WriteLine("\n" + this.player.playerName + this.victim.GetRandomAttributeString(this.threaten) + "\n" +
                     " [You threaten the captive.]");
                 Console.ReadKey(true);
                 Random random = new Random();
@@ -103,14 +103,14 @@ class Interrogation
                 }
                 catch
                 {
-                    Console.WriteLine("[Your choice was invalid.]\n");
+                    Console.WriteLine("\n[Your choice was invalid.]\n");
                     Console.ReadKey(true);
                     continue;
                 }
             }
             else if (choice == "give up")
             {
-                Console.WriteLine("[You gave up and called it quits. You lost some respect from Kelly.]\n");
+                Console.WriteLine("\n[You gave up and called it quits. You lost some respect from Kelly.]\n");
                 Console.ReadKey(true);
                 this.kelly.addRep(-20);
                 this.player.setFatigue(fatigue);
@@ -125,7 +125,7 @@ class Interrogation
             }
             else if (choice == "bribe")
             {
-                Console.WriteLine(this.player.playerName + this.victim.GetRandomAttributeString(this.bribe) +
+                Console.WriteLine("\n" + this.player.playerName + this.victim.GetRandomAttributeString(this.bribe) +
                     "\n" +
                     " [How much money will you offer? You have " + this.player.getMoney() + " dollars.]");
                 string amnt = Console.ReadLine()!;
@@ -187,14 +187,14 @@ class Interrogation
                     }
                     else
                     {
-                        Console.WriteLine("[You don't have that much money.]");
+                        Console.WriteLine("\n[You don't have that much money.]");
                         Console.ReadKey(true);
                         continue;
                     }
                 }
                 catch
                 {
-                    Console.WriteLine("[That is not a valid amount.]");
+                    Console.WriteLine("\n[That is not a valid amount.]");
                     continue;
                 }
             }
@@ -288,14 +288,14 @@ class Interrogation
                 }
                 catch
                 {
-                    Console.WriteLine("[Your choice of equipment and/or location was invalid.]\n");
+                    Console.WriteLine("\n[Your choice of equipment and/or location was invalid.]\n");
                     Console.ReadKey(true);
                     continue;
                 }
             }
             else if (choice == "talk to captive")
             {
-                Console.WriteLine(this.player.playerName + this.victim.GetRandomAttributeString(this.talk));
+                Console.WriteLine("\n" + this.player.playerName + this.victim.GetRandomAttributeString(this.talk));
                 Console.ReadKey(true);
                 bool result = this.victim.infoAttempt();
                 if (result == true)
@@ -307,7 +307,7 @@ class Interrogation
                         this.player.addMoney(10);
                         this.kelly.addRep(10);
                         this.player.levelUp(1);
-                        Console.WriteLine("[You received 10 dollars and some respect from Kelly.]\n");
+                        Console.WriteLine("[You received 10 dollars and some respect from Kelly.]");
                         Console.WriteLine("[You levelled up.]\n");
                         Console.ReadKey(true);
                         this.player.setFatigue(fatigue);
@@ -323,7 +323,7 @@ class Interrogation
                         var jsonDocument = JsonDocument.Parse(jsonString);
 
                         this.bossSuccess = JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty("bossSuccess").GetRawText())!;
-                        Console.WriteLine(this.bossSuccess);
+                        Console.WriteLine("\n" + this.bossSuccess);
                         Console.ReadKey(true);
                         Console.WriteLine("[You received 30 dollars and quite a bit of respect from Kelly.]\n");
                         Console.ReadKey(true);
@@ -346,7 +346,7 @@ class Interrogation
             }
             else
             {
-                Console.WriteLine("[That was not an option.]");
+                Console.WriteLine("\n[That was not an option.]");
                 continue;
             }
         }

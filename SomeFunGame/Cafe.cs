@@ -18,10 +18,10 @@ class Cafe
     {
         while (true)
         {
-            Console.WriteLine("[Choose an item to buy.]");
+            Console.WriteLine("\n[Choose an item to buy.]");
             foreach (KeyValuePair<string, int> g in shop)
             {
-                Console.WriteLine(string.Format("{0,-5}", g.Key) + "     $" + g.Value);
+                Console.WriteLine(string.Format("{0,-7}", g.Key) + "     $" + g.Value);
             }
             Console.WriteLine("Exit Store\n");
             Console.WriteLine("[What would you like to order?] [Your Money: $" + this.player.getMoney() + "]");
@@ -55,33 +55,33 @@ class Cafe
                         {
                             try
                             {
-                                Console.WriteLine("[You ordered: " + upper + "]\n");
+                                Console.WriteLine("\n[You ordered: " + upper + "]\n");
                                 this.player.subtractMoney(shop[upper]);
                                 this.player.addToPowerups(upper);
                                 break;
                             }
                             catch
                             {
-                                Console.WriteLine("[You can only hold one drink of each at a time.]");
+                                Console.WriteLine("\n[You can only hold one drink of each at a time.]");
                                 Console.ReadKey(true);
                                 break;
                             }
                         }
                         else
                         {
-                            Console.WriteLine("[That was not a valid response].\n");
+                            Console.WriteLine("\n[That was not a valid response].\n");
                         }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("[You don't have enough money.]");
+                    Console.WriteLine("\n[You don't have enough money.]");
                     continue;
                 }
             }
             else
             {
-                Console.WriteLine("[That is not an available item to order.]");
+                Console.WriteLine("\n[That is not an available item to order.]");
                 continue;
             }
         }

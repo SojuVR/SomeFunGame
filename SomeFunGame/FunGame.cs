@@ -46,7 +46,7 @@ class FunGame
             {
                 if (File.ReadAllText(savePath) == "{}")
                 {
-                    Console.WriteLine("[There is no game data to load.]\n");
+                    Console.WriteLine("\n[There is no game data to load.]\n");
                     continue;
                 }
                 string json = File.ReadAllText(savePath);
@@ -65,14 +65,14 @@ class FunGame
             }
             else
             {
-                Console.WriteLine("[That was not an option.]\n");
+                Console.WriteLine("\n[That was not an option.]\n");
                 continue;
             }
         }
     }
     void intro()
     {
-        Console.WriteLine("[You are a newly-hired member of the Central Intelligence Agency of New America. You got in claiming" +
+        Console.WriteLine("\n[You are a newly-hired member of the Central Intelligence Agency of New America. You got in claiming" +
             " to be an expert in interrogations, but you don't actually have any experience....you just really needed a job." +
             " For some reason, you thought this would be an easy job to fake. Your long-term assignment" +
             " will be to interrogate numerous members of a terrorist organization called Antimerica to obtain information" +
@@ -159,7 +159,7 @@ class FunGame
             }
             else if (choice == "your stats")
             {
-                Console.WriteLine("[You are level " + player.getLevel() + " and have " + this.player.getMoney() + " dollars.]");
+                Console.WriteLine("\n[You are level " + player.getLevel() + " and have " + this.player.getMoney() + " dollars.]");
                 this.player.status();
                 Console.ReadKey(true);
                 continue;
@@ -182,7 +182,7 @@ class FunGame
                         this.player.displayNames();
                         continue;
                     }
-                    else if (room == "evidence")
+                    else if (room == "evidence room")
                     {
                         this.player.displayEvidence();
                         continue;
@@ -205,7 +205,7 @@ class FunGame
                     }
                     else
                     {
-                        Console.WriteLine("\n[That was not an option.]");
+                        Console.WriteLine("\n[That was not an option.]\n");
                         continue;
                     }
                 }
@@ -235,7 +235,7 @@ class FunGame
                     }
                     catch
                     {
-                        Console.WriteLine("[That wasn't a valid selection.]\n");
+                        Console.WriteLine("\n[That wasn't a valid selection.]\n");
                         continue;
                     }
                 }
@@ -264,13 +264,13 @@ class FunGame
                 };
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 File.WriteAllText(savePath, json);
-                Console.WriteLine("Goodbye.");
+                Console.WriteLine("\nGoodbye.");
                 Console.ReadKey(true);
                 System.Environment.Exit(0);
             }
             else 
             {
-                Console.WriteLine("[That was not an option.]");
+                Console.WriteLine("\n[That was not an option.]\n");
                 continue;
             }
         }
@@ -281,19 +281,19 @@ class FunGame
         switch (time)
         {
             case 1:
-                Console.WriteLine("Time: Morning");
+                Console.WriteLine("\nTime: Morning");
                 break;
             case 2:
-                Console.WriteLine("Time: Noon");
+                Console.WriteLine("\nTime: Noon");
                 break;
             case 3:
-                Console.WriteLine("Time: Afternoon");
+                Console.WriteLine("\nTime: Afternoon");
                 break;
             case 4:
-                Console.WriteLine("Time: Evening");
+                Console.WriteLine("\nTime: Evening");
                 break;
             case 5:
-                Console.WriteLine("Time: Night");
+                Console.WriteLine("\nTime: Night");
                 break;
         }
     }

@@ -21,7 +21,7 @@ class Home
         setUtility();
         while (true)
         {
-            Console.WriteLine("[Choose from the following options.]\nSleep               Examine House               Go to Work" +
+            Console.WriteLine("\n[Choose from the following options.]\nSleep               Examine House               Go to Work" +
             "\nShop for New House");
             string choice = Console.ReadLine()!;
             choice = choice.ToLower();
@@ -48,7 +48,7 @@ class Home
             }
             else
             {
-                Console.WriteLine("[That was not an option.]");
+                Console.WriteLine("\n[That was not an option.]");
                 continue;
             }
         }
@@ -69,13 +69,13 @@ class Home
     {
         while (true)
         {
-            Console.WriteLine("[Choose a house to buy.]");
+            Console.WriteLine("\n[Choose a house to buy.]");
             foreach (KeyValuePair<string, int> g in homes)
             {
-                Console.WriteLine(string.Format("{0,-5}", g.Key) + "     $" + g.Value);
+                Console.WriteLine(string.Format("{0,-9}", g.Key) + "     $" + g.Value);
             }
             Console.WriteLine("Exit Store\n");
-            Console.WriteLine("[What would you like to order?] [Your Money: $" + this.player.getMoney() + "]");
+            Console.WriteLine("[What would you like to buy?] [Your Money: $" + this.player.getMoney() + "]");
             string order = Console.ReadLine()!;
             order = order.ToLower();
             if (order.Contains("exit"))
@@ -92,7 +92,7 @@ class Home
                 if (this.player.getMoney() >= homes[upper])
                 {
                     this.player.houseDescription(upper);
-                    Console.WriteLine("\n[You'd like to order: " + upper + ", correct?] [Yes/No]\n");
+                    Console.WriteLine("\n[You'd like to buy: " + upper + ", correct?] [Yes/No]\n");
                     string response = "";
                     while (response != "yes" || response != "no")
                     {
@@ -104,26 +104,27 @@ class Home
                         }
                         else if (response == "yes")
                         {
-                            Console.WriteLine("[You ordered: " + upper + "]\n");
+                            Console.WriteLine("\n[You bought: " + upper + "]\n");
                             this.player.subtractMoney(homes[upper]);
+                            homes.Remove(upper);
                             currentHome = upper;
                             return;
                         }
                         else
                         {
-                            Console.WriteLine("[That was not a valid response].\n");
+                            Console.WriteLine("\n[That was not a valid response].\n");
                         }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("[You don't have enough money.]");
+                    Console.WriteLine("\n[You don't have enough money.]");
                     continue;
                 }
             }
             else
             {
-                Console.WriteLine("[That is not an available house to order.]");
+                Console.WriteLine("\n[That is not an available house to order.]");
                 continue;
             }
         }

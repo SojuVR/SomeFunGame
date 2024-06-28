@@ -134,19 +134,19 @@ class Interrogated
         float fear = ((float)this.fearNum / this.fearMax) * 100;
         if (health < 25)
         {
-            Console.WriteLine("[The captive doesn't look like much more can be taken.]");
+            Console.WriteLine("\n[The captive doesn't look like much more can be taken.]");
         }
         else if (health >= 25 && health < 50)
         {
-            Console.WriteLine("[The captive seems to be in pain but remains resilient.]");
+            Console.WriteLine("\n[The captive seems to be in pain but remains resilient.]");
         }
         else if (health >= 50 && health < 75)
         {
-            Console.WriteLine("[The captive doesn't seem too bothered by this interrogation yet.]");
+            Console.WriteLine("\n[The captive doesn't seem too bothered by this interrogation yet.]");
         }
         else if (health >= 75 && health <= 100)
         {
-            Console.WriteLine("[The captive looks ready to burst out of the chair to fight you.]");
+            Console.WriteLine("\n[The captive looks ready to burst out of the chair to fight you.]");
         }
         if (fear < 25)
         {
