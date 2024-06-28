@@ -8,15 +8,20 @@ class Player
     public string playerName;
     [JsonProperty] private int level;
     [JsonProperty] private int money;
+    [JsonProperty] private double fatigue;
     public List<string> inventory;
+    public List<string> powerups;
     [JsonProperty] private List<string> bossNames;
     [JsonProperty] private List<string> bossEvidence;
+    
     public Player()
     {
         this.playerName = "IDFK";
         this.level = 1;
         this.money = 10000;
+        this.fatigue = 0;
         this.inventory = new List<string>();
+        this.powerups = new List<string>();
         this.bossNames = new List<string>();
         this.bossEvidence = new List<string>();
     }
@@ -52,10 +57,10 @@ class Player
         int max = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty("maxDmg").GetRawText())!;
         int mult = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
         Random random = new Random();
-        int dmg = (random.Next(min, max + 1)) * mult;
+        double dmg = ((random.Next(min, max + 1)) * mult) * (1 - fatigue);
         string desc = System.Text.Json.JsonSerializer.Deserialize<string>(jsonDocument.RootElement.GetProperty(spot + "Desc").GetRawText())!;
         Console.WriteLine(desc);
-        return dmg;
+        return (int)dmg;
     }
 
     public int inflictFear(string force, string spot)
@@ -68,8 +73,8 @@ class Player
         int mult = System.Text.Json.JsonSerializer.Deserialize<int>(jsonDocument.RootElement.GetProperty(spot).GetRawText())!;
         Console.ReadKey(true);
         Random random = new Random();
-        int fear = (random.Next(min, max + 1)) * mult;
-        return fear;
+        double fear = ((random.Next(min, max + 1)) * mult) * (1 - fatigue);
+        return (int)fear;
     }
 
     public int affectKelly(string force)
@@ -126,6 +131,11 @@ class Player
         this.inventory.Add(gear);
     }
 
+    public void addToPowerups(string drink)
+    {
+        this.powerups.Add(drink);
+    }
+
     public void addMoney(int money)
     {
         this.money += money;
@@ -178,6 +188,47 @@ class Player
         {
             Console.WriteLine(evidence + "\n");
             Console.ReadKey(true);
+        }
+    }
+
+    public bool addFatigue(double buff = 0)
+    {
+        fatigue += 0.34;
+        fatigue -= buff;
+        if (fatigue >= 1.00)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void resetFatigue()
+    {
+        fatigue = 0;
+    }
+
+    public void decreaseFatigue(double buff)
+    {
+        fatigue -= buff;
+        if (fatigue < 0)
+        {
+            resetFatigue();
+        }
+    }
+
+    public void status()
+    {
+        if (fatigue >= 0 && fatigue < 0.20)
+        {
+            Console.WriteLine("[You are feeling fantastic and ready to go.]\n");
+        }
+        else if (fatigue >= 0.20 && fatigue < 0.68)
+        {
+            Console.WriteLine("[You are feeling a little worn out.]\n");
+        }
+        else if (fatigue >= 0.68 && fatigue < 1.00)
+        {
+            Console.WriteLine("[You are feeling incredibly exhausted.]\n");
         }
     }
 }

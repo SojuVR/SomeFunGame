@@ -142,6 +142,10 @@ class Interrogation
                     string force = Console.ReadLine()!;
                     force = force.ToLower();
                     string force2 = char.ToUpper(force[0]) + force.Substring(1);
+                    if (!this.player.inventory.Contains(force2))
+                    {
+                        throw new Exception();
+                    }
                     Console.WriteLine("\nHead        Chest        Stomach\n" +
                         "Genitals     Arms         Legs");
                     Console.WriteLine("[Where would you like to use it?]");

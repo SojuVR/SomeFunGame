@@ -8,7 +8,10 @@ class FunGame
     private Shop gear;
     private Interrogation interrogation;
     private Script script;
+    private Home home;
+    private Cafe cafe;
     private bool boss;
+    private int time = 1;
     private string savePath = @"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Save\savePlayer.json";
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public FunGame()
@@ -33,6 +36,8 @@ class FunGame
                 this.kelly = new Kelly();
                 this.player.setName();
                 this.script = new Script(this.kelly, this.player.playerName);
+                this.home = new Home(this.player);
+                this.cafe = new Cafe(this.player);
                 intro();
                 tutorial();
                 break;
@@ -52,6 +57,10 @@ class FunGame
                 this.script = new Script(this.kelly, this.player.playerName);
                 this.script.finishedLevels = JsonConvert.DeserializeObject<HashSet<int>>(Convert.ToString(data.Script));
                 this.gear.shop = JsonConvert.DeserializeObject<Dictionary<string, int>>(Convert.ToString(data.Shop));
+                this.home = new Home(this.player);
+                this.cafe = new Cafe(this.player);
+                this.home.utility = JsonConvert.DeserializeObject<int>(Convert.ToString(data.Home));
+                this.cafe.shop = JsonConvert.DeserializeObject<Dictionary<string, int>>(Convert.ToString(data.Cafe));
                 break;
             }
             else
@@ -119,7 +128,23 @@ class FunGame
                 interrogation = new Interrogation(new Interrogated(2, this.player.getLevel()), this.player, this.kelly);
                 interrogation.Interrogate(2);
                 boss = false;
+                time += 1;
             }
+            if (time > 5)
+            {
+                time = 1;
+                bool result = this.player.addFatigue();
+                if (result == true)
+                {
+                    float lostMoney = (this.player.getMoney() * 3) / 4;
+                    int lostMoneyInt = (int)lostMoney;
+                    Console.WriteLine("[You collapse from exhaustion. A hospital bills you " + lostMoneyInt + " dollars.]");
+                    this.player.subtractMoney(lostMoneyInt);
+                    this.player.resetFatigue();
+                }
+                this.player.subtractMoney(this.home.utility);
+            }
+            currentTime();
             Console.WriteLine("[Choose from the following options.]\nInterrogate     Talk to Kelly     Your Stats" +
             "\nBuy Gear        Inventory         Hallway\nExit Game\n");
             string choice = Console.ReadLine()!;
@@ -128,11 +153,13 @@ class FunGame
             {
                 interrogation = new Interrogation(new Interrogated(1), this.player, this.kelly);
                 interrogation.Interrogate(1);
+                time += 1;
                 continue;
             }
             else if (choice.Contains("stats"))
             {
-                Console.WriteLine("[You are level " + player.getLevel() + " and have " + this.player.getMoney() + " dollars.]\n");
+                Console.WriteLine("[You are level " + player.getLevel() + " and have " + this.player.getMoney() + " dollars.]");
+                this.player.status();
                 Console.ReadKey(true);
                 continue;
             }
@@ -140,7 +167,8 @@ class FunGame
             {
                 while (true)
                 {
-                    Console.WriteLine("[Choose from the following options.]\nCellblock     Evidence Room     Common Room" +
+                    currentTime();
+                    Console.WriteLine("[Choose from the following options.]\nCellblock     Evidence Room     Cafe" +
             "\nYour Office   Go Home");
                     string room = Console.ReadLine()!;
                     room = room.ToLower();
@@ -158,12 +186,17 @@ class FunGame
                         this.player.displayEvidence();
                         continue;
                     }
-                    else if (room.Contains("common"))
+                    else if (room == "cafe")
                     {
-                        break;
+                        this.cafe.buyDrink();
+                        Console.WriteLine("[You spend some time relaxing at the cafe.]\n");
+                        time += 1;
+                        continue;
                     }
                     else if (room.Contains("go") || room.Contains("home"))
                     {
+                        this.home.sleep();
+                        time = 1;
                         break;
                     }
                     else
@@ -222,7 +255,9 @@ class FunGame
                     Player = this.player,
                     Kelly = this.kelly,
                     Script = this.script.finishedLevels,
-                    Shop = this.gear.shop
+                    Shop = this.gear.shop,
+                    Home = this.home.utility,
+                    Cafe = this.cafe.shop
                 };
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 File.WriteAllText(savePath, json);
@@ -235,6 +270,28 @@ class FunGame
                 Console.WriteLine("[That was not an option.]");
                 continue;
             }
+        }
+    }
+
+    public void currentTime()
+    {
+        switch (time)
+        {
+            case 1:
+                Console.WriteLine("Time: Morning");
+                break;
+            case 2:
+                Console.WriteLine("Time: Noon");
+                break;
+            case 3:
+                Console.WriteLine("Time: Afternoon");
+                break;
+            case 4:
+                Console.WriteLine("Time: Evening");
+                break;
+            case 5:
+                Console.WriteLine("Time: Night");
+                break;
         }
     }
 }
