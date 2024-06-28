@@ -82,7 +82,6 @@ class Player
         {
             fear *= 2;
         }
-        Console.WriteLine(fear);
         return (int)fear;
     }
 

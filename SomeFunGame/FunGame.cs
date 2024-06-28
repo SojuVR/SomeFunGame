@@ -137,7 +137,8 @@ class FunGame
                 {
                     float lostMoney = (this.player.getMoney() * 3) / 4;
                     int lostMoneyInt = (int)lostMoney;
-                    Console.WriteLine("[You collapse from exhaustion. A hospital bills you " + lostMoneyInt + " dollars.]");
+                    Console.WriteLine("\n[You collapse from exhaustion. A hospital bills you " + lostMoneyInt + " dollars.]");
+                    Console.ReadKey(true);
                     this.player.subtractMoney(lostMoneyInt);
                     this.player.setFatigue(0);
                 }
