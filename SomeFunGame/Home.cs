@@ -1,5 +1,5 @@
 ﻿
-
+[Serializable]
 class Home
 {
     private Player player;

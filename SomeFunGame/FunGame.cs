@@ -60,7 +60,6 @@ class FunGame
                 this.home = new Home(this.player);
                 this.cafe = new Cafe(this.player);
                 this.home.utility = JsonConvert.DeserializeObject<int>(Convert.ToString(data.Home));
-                this.cafe.shop = JsonConvert.DeserializeObject<Dictionary<string, int>>(Convert.ToString(data.Cafe));
                 break;
             }
             else
@@ -257,7 +256,6 @@ class FunGame
                     Script = this.script.finishedLevels,
                     Shop = this.gear.shop,
                     Home = this.home.utility,
-                    Cafe = this.cafe.shop
                 };
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 File.WriteAllText(savePath, json);
