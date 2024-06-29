@@ -18,7 +18,7 @@ class Player
     {
         this.playerName = "IDFK";
         this.level = 1;
-        this.money = 10000;
+        this.money = 10;
         this.fatigue = 0;
         this.inventory = new List<string>();
         this.powerups = new List<string>();
