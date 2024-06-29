@@ -59,7 +59,7 @@ class FunGame
                 this.gear.shop = JsonConvert.DeserializeObject<Dictionary<string, int>>(Convert.ToString(data.Shop));
                 this.home = new Home(this.player);
                 this.cafe = new Cafe(this.player);
-                this.home.currentHome = JsonConvert.DeserializeObject<string>(Convert.ToString(data.Home));
+                this.home.currentHome = JsonConvert.DeserializeObject<string>("\"" + data.Home + "\"");
                 this.home.setUtility();
                 break;
             }
