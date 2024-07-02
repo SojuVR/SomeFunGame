@@ -5,6 +5,7 @@ class Home
 {
     private Player player;
     private int utility;
+    private bool lastChance = false;
     private Dictionary<string, int> homes;
     public string currentHome;
 
@@ -16,7 +17,7 @@ class Home
         this.currentHome = "Studio";
     }
 
-    public bool goHome()
+    public int goHome()
     {
         setUtility();
         while (true)
@@ -27,8 +28,8 @@ class Home
             choice = choice.ToLower();
             if (choice == "sleep")
             {
-                sleep();
-                return true;
+                int answer = sleep();
+                return answer;
             }
             else if (choice == "examine house")
             {
@@ -52,17 +53,35 @@ class Home
                 continue;
             }
         }
-        return false;
+        return 0;
     }
 
-    public void sleep()
+    public int sleep()
     {
-        Console.WriteLine("\n[You go to sleep.]");
-        Console.ReadKey(true);
-        this.player.setFatigue(0);
-        Console.WriteLine("[" + utility + " dollars was subtracted for utilities.]");
-        Console.ReadKey(true);
-        this.player.subtractMoney(utility);
+        if (player.getMoney() >= 0)
+        {
+            Console.WriteLine("\n[You go to sleep.]");
+            Console.ReadKey(true);
+            this.player.setFatigue(0);
+            Console.WriteLine("[" + utility + " dollars was subtracted for utilities.]");
+            Console.ReadKey(true);
+            this.player.subtractMoney(utility);
+            if (player.getMoney() < 0 && lastChance == false)
+            {
+                lastChance = true;
+            }
+            else if (lastChance == true && player.getMoney() > 0)
+            {
+                lastChance = false;
+            }
+            return 1;
+        }
+        else
+        {
+            Console.WriteLine("\n[You tried to sleep with no money in your bank account. You've been evicted from your home.]");
+            Console.WriteLine("[You cannot continue your job being a bum on the streets. You lose!]");
+            return 2;
+        }
     }
 
     public void buyHome()

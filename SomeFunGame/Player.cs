@@ -186,10 +186,6 @@ class Player
         {
             this.money -= money;
         }
-        if (this.money < 0)
-        {
-            this.money = 0;
-        }
     }
 
     public void addBossName()

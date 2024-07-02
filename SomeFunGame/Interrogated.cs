@@ -163,7 +163,7 @@ class Interrogated
             Console.WriteLine("[The captive is hoping for a prayer to be answered.]\n");
             Console.ReadKey(true);
         }
-        else if (fear >= 75 && fear < 100)
+        else if (fear >= 75 && fear <= 100)
         {
             Console.WriteLine("[The captive is trembling in the chair, unable to look at you.]\n");
             Console.ReadKey(true);
@@ -238,7 +238,7 @@ class Interrogated
         float chance;
         int num;
         Random random = new Random();
-        chance = (((float)fearNum / fearMax) / 3) * 100;
+        chance = ((((float)fearNum / fearMax) / 3) * 100) + 10;
         num = random.Next(100);
         if (num < chance)
         {

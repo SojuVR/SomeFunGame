@@ -11,6 +11,7 @@ class FunGame
     private Home home;
     private Cafe cafe;
     private bool boss;
+    private bool end = false;
     private int time = 1;
     private string savePath = @"C:\Users\emman\source\repos\SomeFunGame\SomeFunGame\Save\savePlayer.json";
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -118,6 +119,11 @@ class FunGame
     {
         while (true)
         {
+            if (end == true)
+            {
+                File.WriteAllText(savePath, "{}");
+                break;
+            }
             if (this.kelly.checkFail() == true)
             {
                 File.WriteAllText(savePath, "{}");
@@ -166,7 +172,7 @@ class FunGame
             }
             else if (choice == "hallway")
             {
-                while (true)
+                while (end == false)
                 {
                     currentTime();
                     Console.WriteLine("[Choose from the following options.]\nCellblock     Evidence Room     Cafe" +
@@ -196,10 +202,14 @@ class FunGame
                     }
                     else if (room == "go home")
                     {
-                        bool result = this.home.goHome();
-                        if (result == true)
+                        int result = this.home.goHome();
+                        if (result == 1)
                         {
                             time = 1;
+                        }
+                        else if (result == 2)
+                        {
+                            end = true;
                         }
                         break;
                     }
