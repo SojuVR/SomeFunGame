@@ -111,7 +111,7 @@ class FunGame
         Console.WriteLine("[Your job will be to interrogate prisoners for information. Kelly was told you convince captives quickly. " +
             "The longer you take and the more painful you make it, the less she will like you. She likes to keep things quick. If she dislikes you enough, " +
             "you'll lose your job. As you become more successful, more tools will be available to you. Make interrogations fast. You will earn money" +
-            " for powerups, tools, and to pay your daily rent. Good luck.]\n");
+            " for powerups, tools, and to pay for house utilities. Good luck.]\n");
         Console.ReadKey(true);
     }
 
@@ -195,6 +195,12 @@ class FunGame
                     }
                     else if (room == "cafe")
                     {
+                        if (time == 5)
+                        {
+                            Console.WriteLine("\nThe cafe is closed. Come by between the morning and evening.");
+                            Console.ReadKey(true);
+                            continue;
+                        }
                         this.cafe.buyDrink();
                         Console.WriteLine("[You spend some time relaxing at the cafe.]\n");
                         time += 1;

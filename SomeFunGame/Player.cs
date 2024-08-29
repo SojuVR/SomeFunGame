@@ -229,7 +229,7 @@ class Player
     public bool addFatigue(double buff = 0)
     {
         fatigue += 0.34;
-        fatigue -= buff;
+        fatigue -= (buff/100);
         if (fatigue >= 1.00)
         {
             return true;
